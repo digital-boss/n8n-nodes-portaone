@@ -35,10 +35,6 @@ node /var/www/vhosts/n8n/bin/n8n
 
 Eloqua node includes Endpoints for Contacts, Custom Objects and Custom Object Data
 
-# Use
-
-Pass a data object.
-
 # Contribution
 
 To make this node even better, please let us know, [how you use it](mailto:info@digital-north-consulting.com). Commits are always welcome. 
