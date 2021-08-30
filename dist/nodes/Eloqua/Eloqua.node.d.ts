@@ -1,8 +1,11 @@
-import { IExecuteFunctions, IHookFunctions } from "n8n-core";
-import { IDataObject, ILoadOptionsFunctions } from "n8n-workflow";
-export interface IProduct {
-    fields: {
-        item?: object[];
+import { IExecuteFunctions } from 'n8n-core';
+import { ILoadOptionsFunctions, INodeExecutionData, INodePropertyOptions, INodeType, INodeTypeDescription } from 'n8n-workflow';
+export declare class Eloqua implements INodeType {
+    description: INodeTypeDescription;
+    methods: {
+        loadOptions: {
+            getContactFields(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]>;
+        };
     };
+    execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]>;
 }
-export declare function eloquaApiRequest(this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions, method: string, endpoint: string, body: IDataObject, query?: IDataObject): Promise<any>;

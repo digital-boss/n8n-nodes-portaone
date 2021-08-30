@@ -3,6 +3,7 @@ import { IExecuteFunctions, IHookFunctions } from "n8n-core";
 import {
   IDataObject,
   ILoadOptionsFunctions,
+  INodeProperties,
   NodeApiError,
   NodeOperationError,
 } from "n8n-workflow";
@@ -20,7 +21,6 @@ async function requestBaseUrlFromServer(
   this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions,
   base64Creds: string
 ) {
-
   const options: OptionsWithUri = {
     headers: { Authorization: `Basic ${base64Creds}` },
     method: "GET",
@@ -48,7 +48,7 @@ async function getBaseUrl(
     try {
       baseUrl = fs.readFileSync("./eloquaBaseUrl.txt").toString();
     } catch (err) {
-      baseUrl = await requestBaseUrlFromServer.call(this ,base64Creds);
+      baseUrl = await requestBaseUrlFromServer.call(this, base64Creds);
     }
   } else {
     baseUrl = await requestBaseUrlFromServer.call(this, base64Creds);
@@ -72,21 +72,21 @@ export async function eloquaApiRequest(
   body: IDataObject,
   query?: IDataObject
 ): Promise<any> {
-    //tslint:disable-line:no-any
-    const credentials = await this.getCredentials("eloqua");
-    
-    if (credentials === undefined) {
-        throw new NodeOperationError(
-            this.getNode(),
-            "No credentials got returned!"
-            );
-        }
-        
-        const base64Creds = Buffer.from(
-            `${credentials.companyName}\\${credentials.userName}:${credentials.password}`
-            ).toString("base64");
-        
-            const baseUrl = await getBaseUrl.call(this, base64Creds);
+  //tslint:disable-line:no-any
+  const credentials = await this.getCredentials("eloqua");
+
+  if (credentials === undefined) {
+    throw new NodeOperationError(
+      this.getNode(),
+      "No credentials got returned!"
+    );
+  }
+
+  const base64Creds = Buffer.from(
+    `${credentials.companyName}\\${credentials.userName}:${credentials.password}`
+  ).toString("base64");
+
+  const baseUrl = await getBaseUrl.call(this, base64Creds);
 
   if (query === undefined) {
     query = {};
