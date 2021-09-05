@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Eloqua = void 0;
-class Eloqua {
+exports.EloquaApi = void 0;
+class EloquaApi {
     constructor() {
-        this.name = 'eloqua';
-        this.displayName = 'Oracle Eloqua';
+        this.name = 'eloquaApi';
+        this.displayName = 'Oracle Eloqua API';
         this.documentationUrl = 'eloqua';
         this.properties = [
             {
@@ -23,10 +23,13 @@ class Eloqua {
                 displayName: 'Password',
                 name: 'password',
                 type: 'string',
+                typeOptions: {
+                    password: true,
+                },
                 default: '',
             },
         ];
     }
 }
-exports.Eloqua = Eloqua;
-//# sourceMappingURL=Eloqua.credentials.js.map
+exports.EloquaApi = EloquaApi;
+//# sourceMappingURL=EloquaApi.credentials.js.map

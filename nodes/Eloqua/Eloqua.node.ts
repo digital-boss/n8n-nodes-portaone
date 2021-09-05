@@ -15,7 +15,7 @@ export class Eloqua implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Oracle Eloqua',
 		name: 'eloqua',
-		icon: 'file:oracle-logo.svg',
+		icon: 'file:eloqua.png',
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
@@ -28,11 +28,45 @@ export class Eloqua implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'eloqua',
-				required: true
+				name: 'eloquaApi',
+				required: true,
+				displayOptions: {
+					show: {
+						authentication: ['httpBasicAuth']
+					}
+				}
+			},
+			{
+				name: 'eloquaOAuth2Api',
+				required: true,
+				displayOptions: {
+					show: {
+						authentication: ['oAuth2']
+					}
+				}
 			}
 		],
 		properties: [
+			// ----------------------------------
+			//         Authentication
+			// ----------------------------------
+			{
+				displayName: 'Authentication',
+				name: 'authentication',
+				type: 'options',
+				options: [
+					{
+						name: 'Basic Authentication',
+						value: 'httpBasicAuth'
+					},
+					{
+						name: 'OAuth2',
+						value: 'oAuth2'
+					}
+				],
+				default: 'httpBasicAuth',
+				description: 'The authentication method to use.'
+			},
 			// ----------------------------------
 			//         resources
 			// ----------------------------------
@@ -926,6 +960,7 @@ export class Eloqua implements INodeType {
 					this,
 					'GET',
 					'/api/REST/1.0/assets/contact/fields',
+					{},
 					{}
 				);
 				for (const element of response.elements) {
@@ -946,6 +981,7 @@ export class Eloqua implements INodeType {
 		const returnData: IDataObject[] = [];
 		const resource = this.getNodeParameter('resource', 0) as string;
 		const operation = this.getNodeParameter('operation', 0) as string;
+		const staticData = this.getWorkflowStaticData('node') as IDataObject;
 		let endpoint = '';
 		let requestMethod = '';
 
@@ -979,6 +1015,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1007,6 +1044,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1024,6 +1062,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1041,6 +1080,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1050,13 +1090,14 @@ export class Eloqua implements INodeType {
 					else if (operation === 'getAll') {
 						requestMethod = 'GET';
 						endpoint = '/api/REST/1.0/data/contacts';
-						qs = {} as IDataObject;
+						qs = this.getNodeParameter('queryParameters', i) as IDataObject;
 
 						responseData = await eloquaApiRequest.call(
 							this,
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1080,6 +1121,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1104,6 +1146,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1121,6 +1164,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1138,6 +1182,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1154,6 +1199,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1168,7 +1214,10 @@ export class Eloqua implements INodeType {
 
 						body = this.getNodeParameter('optionalFields', i) as IDataObject;
 						// body.accountId = '12345'; TODO: Check if Read Only
-						const { fields } = this.getNodeParameter('customObjectDataCustomFields', i) as any;
+						const { fields } = this.getNodeParameter(
+							'customObjectDataCustomFields',
+							i
+						) as any;
 						body.fieldValues = fields;
 
 						qs = {} as IDataObject;
@@ -1178,6 +1227,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1202,6 +1252,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1221,6 +1272,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1232,7 +1284,7 @@ export class Eloqua implements INodeType {
 						const parentId = this.getNodeParameter('parentId', i) as string;
 						const objectDataId = this.getNodeParameter('id', i) as string;
 						endpoint = `/api/REST/2.0/data/customObject/${parentId}/instance/${objectDataId}`;
-						
+
 						qs = {} as IDataObject;
 
 						responseData = await eloquaApiRequest.call(
@@ -1240,6 +1292,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1258,6 +1311,7 @@ export class Eloqua implements INodeType {
 							requestMethod,
 							endpoint,
 							body,
+							staticData,
 							qs
 						);
 					}
@@ -1267,7 +1321,7 @@ export class Eloqua implements INodeType {
 				} else {
 					returnData.push(responseData);
 				}
-			} catch (error: any) {
+			} catch (error:any) {
 				if (this.continueOnFail()) {
 					returnData.push({ error: error.message });
 					continue;

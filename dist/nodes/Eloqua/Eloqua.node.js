@@ -7,7 +7,7 @@ class Eloqua {
         this.description = {
             displayName: 'Oracle Eloqua',
             name: 'eloqua',
-            icon: 'file:oracle-logo.svg',
+            icon: 'file:eloqua.png',
             group: ['input'],
             version: 1,
             subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
@@ -20,11 +20,42 @@ class Eloqua {
             outputs: ['main'],
             credentials: [
                 {
-                    name: 'eloqua',
-                    required: true
+                    name: 'eloquaApi',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            authentication: ['httpBasicAuth']
+                        }
+                    }
+                },
+                {
+                    name: 'eloquaOAuth2Api',
+                    required: true,
+                    displayOptions: {
+                        show: {
+                            authentication: ['oAuth2']
+                        }
+                    }
                 }
             ],
             properties: [
+                {
+                    displayName: 'Authentication',
+                    name: 'authentication',
+                    type: 'options',
+                    options: [
+                        {
+                            name: 'Basic Authentication',
+                            value: 'httpBasicAuth'
+                        },
+                        {
+                            name: 'OAuth2',
+                            value: 'oAuth2'
+                        }
+                    ],
+                    default: 'httpBasicAuth',
+                    description: 'The authentication method to use.'
+                },
                 {
                     displayName: 'Resource',
                     name: 'resource',
@@ -860,7 +891,7 @@ class Eloqua {
             loadOptions: {
                 async getContactFields() {
                     const returnData = [];
-                    const response = await GenericFunctions_1.eloquaApiRequest.call(this, 'GET', '/api/REST/1.0/assets/contact/fields', {});
+                    const response = await GenericFunctions_1.eloquaApiRequest.call(this, 'GET', '/api/REST/1.0/assets/contact/fields', {}, {});
                     for (const element of response.elements) {
                         const fieldName = element.name;
                         const fieldId = element.id;
@@ -879,6 +910,7 @@ class Eloqua {
         const returnData = [];
         const resource = this.getNodeParameter('resource', 0);
         const operation = this.getNodeParameter('operation', 0);
+        const staticData = this.getWorkflowStaticData('node');
         let endpoint = '';
         let requestMethod = '';
         let body = {};
@@ -895,7 +927,7 @@ class Eloqua {
                         const { property } = this.getNodeParameter('customFields', i);
                         body.fieldValues = property;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'update') {
                         requestMethod = 'PUT';
@@ -907,27 +939,27 @@ class Eloqua {
                         const { property } = this.getNodeParameter('customFields', i);
                         body.fieldValues = property;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'delete') {
                         requestMethod = 'DELETE';
                         const contactId = this.getNodeParameter('id', i);
                         endpoint = `/api/REST/1.0/data/contact/${contactId}`;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'get') {
                         requestMethod = 'GET';
                         const contactId = this.getNodeParameter('id', i);
                         endpoint = `/api/REST/1.0/data/contact/${contactId}`;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'getAll') {
                         requestMethod = 'GET';
                         endpoint = '/api/REST/1.0/data/contacts';
-                        qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        qs = this.getNodeParameter('queryParameters', i);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                 }
                 else if (resource === 'customObject') {
@@ -939,7 +971,7 @@ class Eloqua {
                         const { fields } = this.getNodeParameter('customFields', i);
                         body.fields = fields;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'update') {
                         requestMethod = 'PUT';
@@ -951,27 +983,27 @@ class Eloqua {
                         const { fields } = this.getNodeParameter('customFields', i);
                         body.fields = fields;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'delete') {
                         requestMethod = 'DELETE';
                         const objectId = this.getNodeParameter('id', i);
                         endpoint = `/api/REST/2.0/assets/customObject/${objectId}`;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'get') {
                         requestMethod = 'GET';
                         const objectId = this.getNodeParameter('id', i);
                         endpoint = `/api/REST/2.0/assets/customObject/${objectId}`;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'getAll') {
                         requestMethod = 'GET';
                         endpoint = '/api/REST/2.0/assets/customObjects';
                         qs = this.getNodeParameter('queryParameters', i);
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                 }
                 else if (resource === 'customObjectData') {
@@ -983,7 +1015,7 @@ class Eloqua {
                         const { fields } = this.getNodeParameter('customObjectDataCustomFields', i);
                         body.fieldValues = fields;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'update') {
                         requestMethod = 'PUT';
@@ -995,7 +1027,7 @@ class Eloqua {
                         const { fields } = this.getNodeParameter('customFields', i);
                         body.fieldValues = fields;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'delete') {
                         requestMethod = 'DELETE';
@@ -1003,7 +1035,7 @@ class Eloqua {
                         const objectDataId = this.getNodeParameter('id', i);
                         endpoint = `/api/REST/2.0/data/customObject/${parentId}/instance/${objectDataId}`;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'get') {
                         requestMethod = 'GET';
@@ -1011,14 +1043,14 @@ class Eloqua {
                         const objectDataId = this.getNodeParameter('id', i);
                         endpoint = `/api/REST/2.0/data/customObject/${parentId}/instance/${objectDataId}`;
                         qs = {};
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                     else if (operation === 'getAll') {
                         requestMethod = 'GET';
                         const parentId = this.getNodeParameter('parentId', i);
                         endpoint = `/api/REST/2.0/data/customObject/${parentId}/instances`;
                         qs = this.getNodeParameter('queryParameters', i);
-                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, qs);
+                        responseData = await GenericFunctions_1.eloquaApiRequest.call(this, requestMethod, endpoint, body, staticData, qs);
                     }
                 }
                 if (Array.isArray(responseData)) {
