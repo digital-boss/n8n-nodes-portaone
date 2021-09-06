@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-dnc-eloqua",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "Iñaki Breinbauer",
   "license": "GPL-3.0",
   "description": "Eloqua support for n8n",
