@@ -31,7 +31,6 @@ async function getBaseUrl(authMethod, base64Creds) {
 }
 async function eloquaApiRequest(method, endpoint, body, staticData = {}, query = {}) {
     const authenticationMethod = this.getNodeParameter('authentication', 0);
-    console.log(authenticationMethod);
     if (authenticationMethod === 'httpBasicAuth') {
         const credentials = await this.getCredentials('eloquaApi');
         if (credentials === undefined) {
@@ -39,7 +38,6 @@ async function eloquaApiRequest(method, endpoint, body, staticData = {}, query =
         }
         const base64Creds = Buffer.from(`${credentials.companyName}\\${credentials.userName}:${credentials.password}`).toString('base64');
         if (!staticData.baseUrl) {
-            console.log('get base URl first time');
             staticData.baseUrl = await getBaseUrl.call(this, authenticationMethod, base64Creds);
         }
         const options = {
@@ -57,7 +55,6 @@ async function eloquaApiRequest(method, endpoint, body, staticData = {}, query =
             if (responseData && responseData.success === false) {
                 throw new n8n_workflow_1.NodeApiError(this.getNode(), responseData);
             }
-            console.log('got response Data');
             return responseData;
         }
         catch (error) {
