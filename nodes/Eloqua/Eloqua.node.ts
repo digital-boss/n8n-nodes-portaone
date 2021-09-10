@@ -6,7 +6,7 @@ import {
 	INodeExecutionData,
 	INodePropertyOptions,
 	INodeType,
-	INodeTypeDescription
+	INodeTypeDescription,
 } from 'n8n-workflow';
 
 import { eloquaApiRequest } from './GenericFunctions';
@@ -1321,7 +1321,7 @@ export class Eloqua implements INodeType {
 				} else {
 					returnData.push(responseData);
 				}
-			} catch (error:any) {
+			} catch (error: any) {
 				if (this.continueOnFail()) {
 					returnData.push({ error: error.message });
 					continue;

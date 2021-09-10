@@ -1,6 +1,6 @@
 {
-  "name": "n8n-nodes-dnc-eloqua",
-  "version": "1.2.2",
+  "name": "@digital-boss/n8n-nodes-eloqua",
+  "version": "1.0.0",
   "author": "Iñaki Breinbauer",
   "license": "GPL-3.0",
   "description": "Eloqua support for n8n",
@@ -56,7 +56,7 @@
   "dependencies": {
     "@types/request": "^2.48.7",
     "@types/request-promise-native": "^1.0.18",
-    "n8n-core": "^0.80.0"
+    "n8n-core": "^0.82.0"
   },
   "jest": {
     "transform": {

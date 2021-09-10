@@ -55,6 +55,9 @@ async function eloquaApiRequest(method, endpoint, body, staticData = {}, query =
             if (responseData && responseData.success === false) {
                 throw new n8n_workflow_1.NodeApiError(this.getNode(), responseData);
             }
+            if (!responseData) {
+                return { success: true };
+            }
             return responseData;
         }
         catch (error) {
@@ -83,6 +86,9 @@ async function eloquaApiRequest(method, endpoint, body, staticData = {}, query =
             const responseData = await this.helpers.requestOAuth2.call(this, 'eloquaOAuth2Api', options);
             if (responseData && responseData.success === false) {
                 throw new n8n_workflow_1.NodeApiError(this.getNode(), responseData);
+            }
+            if (!responseData) {
+                return { success: true };
             }
             return responseData;
         }
