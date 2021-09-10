@@ -108,6 +108,9 @@ export async function eloquaApiRequest(
 			if (responseData && responseData.success === false) {
 				throw new NodeApiError(this.getNode(), responseData);
 			}
+			if(!responseData){
+				return {success: true};
+			}
 			return responseData;
 		} catch (error:any) {
 			const newBaseUrl = await getBaseUrl.call(
@@ -150,6 +153,9 @@ export async function eloquaApiRequest(
 			);
 			if (responseData && responseData.success === false) {
 				throw new NodeApiError(this.getNode(), responseData);
+			}
+			if(!responseData){
+				return {success: true};
 			}
 			return responseData;
 		} catch (error:any) {

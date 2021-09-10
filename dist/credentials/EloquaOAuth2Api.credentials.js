@@ -40,8 +40,7 @@ class EloquaOAuth2Api {
                 displayName: 'Authentication',
                 name: 'authentication',
                 type: 'hidden',
-                default: 'body',
-                description: 'Resource to consume.',
+                default: 'header',
             },
         ];
     }
