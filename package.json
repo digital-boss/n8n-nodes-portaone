@@ -1,6 +1,6 @@
 {
   "name": "@digital-boss/n8n-nodes-eloqua",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Iñaki Breinbauer",
   "license": "GPL-3.0",
   "description": "Eloqua support for n8n",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/quansenB/n8n-nodes-dnc-eloqua.git"
+    "url": "git+https://github.com/quansenB/n8n-nodes-eloqua.git"
   },
   "main": "index.js",
   "scripts": {

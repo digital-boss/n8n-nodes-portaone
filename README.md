@@ -2,7 +2,7 @@
 
 Install it to the n8n root folder. This is the node_modules folder on the same level of n8n and n8n-core. This differs when you used the -g flag on n8n initial installation. From there do:
 ```
-npm install n8n-nodes-dnc-eloqua
+npm install @digital-boss/n8n-node-eloqua
 ```
 # Fresh install n8n
 
@@ -17,7 +17,7 @@ npm init --yes
 
 npm install n8n
 
-npm install n8n-nodes-dnc-eloqua
+npm install @digital-boss/n8n-node-eloqua
 ```
 # Start n8n
 
@@ -41,7 +41,7 @@ To make this node even better, please let us know, [how you use it](mailto:info@
 
 # Issues
 
-If you have any issues, please [let us know on GitHub](https://github.com/quansenB/n8n-nodes-dnc-eloqua/issues).
+If you have any issues, please [let us know on GitHub](https://github.com/quansenB/n8n-nodes-eloqua/issues).
 
 # About
 Special thanks to [N8n nodemation](https://n8n.io) workflow automation by Jan Oberhauser.
