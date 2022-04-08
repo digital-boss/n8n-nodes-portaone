@@ -1,9 +1,9 @@
 {
-  "name": "@digital-boss/n8n-nodes-eloqua",
-  "version": "1.0.1",
+  "name": "@digital-boss/n8n-nodes-portaone",
+  "version": "0.1.0",
   "author": "Iñaki Breinbauer",
   "license": "GPL-3.0",
-  "description": "Eloqua support for n8n",
+  "description": "PortaOne support for n8n",
   "keywords": [
     "n8n",
     "nodemation",
@@ -11,13 +11,13 @@
     "digital north consulting",
     "nodes",
     "custom",
-    "eloqua",
+    "portaone",
     "workflow",
     "crm"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/quansenB/n8n-nodes-eloqua.git"
+    "url": "git+https://github.com/quansenB/n8n-nodes-portaone.git"
   },
   "main": "index.js",
   "scripts": {
@@ -26,18 +26,18 @@
     "tslint": "tslint -p tsconfig.json -c tslint.json",
     "watch": "tsc --watch",
     "test": "jest",
-    "release": "npm run build && npm publish"
+    "release": "npm run build && npm publish --access=public"
   },
   "files": [
     "dist"
   ],
   "n8n": {
     "credentials": [
-      "dist/credentials/EloquaApi.credentials.js",
-      "dist/credentials/EloquaOAuth2Api.credentials.js"
+      "dist/credentials/PortaOneTokenApi.credentials.js",
+      "dist/credentials/PortaOneBasicApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Eloqua/Eloqua.node.js"
+      "dist/nodes/PortaOne/PortaOne.node.js"
     ]
   },
   "devDependencies": {
@@ -56,7 +56,10 @@
   "dependencies": {
     "@types/request": "^2.48.7",
     "@types/request-promise-native": "^1.0.18",
-    "n8n-core": "^0.82.0"
+    "axios": "^0.26.1",
+    "n8n-core": "^0.82.0",
+    "qs": "^6.10.3",
+    "querystring": "^0.2.1"
   },
   "jest": {
     "transform": {
