@@ -39,6 +39,11 @@ export const invoiceDescription = [
         value: "getAll",
         description: "Get data of all invoices",
       },
+      {
+        name: "Apply Adjustment",
+        value: "applyAdjustment",
+        description: "Apply an adjustment to an invoice",
+      },
     ],
     default: "create",
     description: "The operation to perform.",
@@ -54,7 +59,7 @@ export const invoiceDescription = [
     displayOptions: {
       show: {
         resource: ["invoice"],
-        operation: ["get"],
+        operation: ["get", "applyAdjustment"],
       },
     },
     description: "Filters invoices by invoice ID.",
@@ -86,6 +91,81 @@ export const invoiceDescription = [
     },
     description:
       "Filters invoices by the invoice number. Note: the invoice number can be unique in the scope of the customer, reseller, environment; uniqueness depends on the invoice generation settings for the customer/reseller/environment. The UI equivalent of this field is the 'Invoice number' input field on the Invoice search page.",
+  },
+  {
+    displayName: "Get PDF",
+    name: "get_pdf",
+    type: "boolean",
+    default: false,
+    displayOptions: {
+      show: {
+        resource: ["invoice"],
+        operation: ["get"],
+      },
+    },
+    description:
+      "The flag indicates whether to include the PDF file in the response. Note: if the PDF file does not exist, only the invoice information will be included in the response.",
+  },
+  // --------------------------
+  //         Invoice - Apply Adjustment
+  // --------------------------
+  {
+    displayName: "Amount",
+    name: "amount",
+    type: "number",
+    default: 0,
+    typeOptions: {
+      numberPrecision: 2,
+    },
+    displayOptions: {
+      show: {
+        resource: ["invoice"],
+        operation: ["applyAdjustment"],
+      },
+    },
+    description: "An amount of adjustment",
+  },
+  {
+    displayName: "Refund to Credit Card?",
+    name: "refund_to_cc",
+    type: "boolean",
+    default: false,
+    displayOptions: {
+      show: {
+        resource: ["invoice"],
+        operation: ["applyAdjustment"],
+      },
+    },
+    description:
+      "For fully paid invoices only. If set to 1, the adjustment amount will be refunded to the credit card.",
+  },
+  {
+    displayName: "Visible Comment",
+    name: "visible_comment",
+    type: "string",
+    default: "",
+    displayOptions: {
+      show: {
+        resource: ["invoice"],
+        operation: ["applyAdjustment"],
+      },
+    },
+    description:
+      "A comment on this transaction visible to the customer in the xDR browser.",
+  },
+  {
+    displayName: "Internal Comment",
+    name: "internal_comment",
+    type: "string",
+    default: "",
+    displayOptions: {
+      show: {
+        resource: ["invoice"],
+        operation: ["applyAdjustment"],
+      },
+    },
+    description:
+      "An internal comment on this transaction; not visible in the xDR browser, and accessible only from the database directly.",
   },
   // --------------------------
   //         Invoice - Create

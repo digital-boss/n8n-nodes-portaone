@@ -12,7 +12,7 @@ import { customerDescription } from "./descriptions/CustomerDescription";
 import { invoiceDescription } from "./descriptions/InvoiceDescription";
 import { customerExtensionDescription } from "./descriptions/CustomerExtensionDescription";
 import { customerXdrsDescription } from "./descriptions/CustomerXdrsDescription";
-import { didNumbers } from "./descriptions/didNumbers";
+import { didNumbersDescription } from "./descriptions/DidNumbersDescription";
 
 import { portaOneApiRequest } from "./GenericFunctions";
 
@@ -96,7 +96,7 @@ export class PortaOne implements INodeType {
           },
           {
             name: "Customer Extension",
-            value: "customerE≠xtension",
+            value: "customerExtension",
           },
           {
             name: "Customer XDRS",
@@ -115,11 +115,16 @@ export class PortaOne implements INodeType {
       ...invoiceDescription,
       ...customerExtensionDescription,
       ...customerXdrsDescription,
-      ...didNumbers,
+      ...didNumbersDescription,
       {
         displayName: "Simplify Response",
         name: "simplify",
         type: "boolean",
+        displayOptions: {
+          show: {
+            operation: ["get", "getAll"],
+          },
+        },
         default: false,
         description: "Simplify the response object.",
       },
@@ -947,7 +952,6 @@ export class PortaOne implements INodeType {
     const operation = this.getNodeParameter("operation", 0) as string;
 
     let endpoint = "";
-    let requestMethod = "";
     let dataKey = "";
     let simplify = false;
 
@@ -961,45 +965,37 @@ export class PortaOne implements INodeType {
         //         customer:create
         // ----------------------------------
         if (operation === "create") {
-          requestMethod = "POST";
-          endpoint = "/api/REST/1.0/data/customer";
-          body = this.getNodeParameter("optionalFields", i) as IDataObject;
-          body.emailAddress = this.getNodeParameter(
-            "emailAddress",
-            i
-          ) as string;
-          const { property } = this.getNodeParameter(
-            "customFields",
+          endpoint = "/rest/Customer/add_customer";
+          body.customer_info = this.getNodeParameter(
+            "additionalFields",
             i
           ) as IDataObject;
-          body.fieldValues = property;
-          qs = {} as IDataObject;
+          body.customer_info.name = this.getNodeParameter("name", i) as string;
+          body.customer_info.iso_4217 = this.getNodeParameter(
+            "iso_4217",
+            i
+          ) as string;
         }
         // ----------------------------------
         //         customer:update
         // ----------------------------------
         else if (operation === "update") {
-          requestMethod = "PUT";
-          const customerId = this.getNodeParameter("id", i) as string;
-          endpoint = `/api/REST/1.0/data/customer/${customerId}`;
-          body = this.getNodeParameter("optionalFields", i) as IDataObject;
-          body.id = customerId;
-          body.emailAddress = this.getNodeParameter(
-            "emailAddress",
-            i
-          ) as string;
-          const { property } = this.getNodeParameter(
-            "customFields",
+          endpoint = "/rest/Customer/update_customer";
+          body.customer_info = this.getNodeParameter(
+            "additionalFields",
             i
           ) as IDataObject;
-          body.fieldValues = property;
-          qs = {} as IDataObject;
+          body.customer_info.i_customer = this.getNodeParameter("i_customer", i) as number;
+          // body.customer_info.name = this.getNodeParameter("name", i) as string;
+          // body.customer_info.iso_4217 = this.getNodeParameter(
+          //   "iso_4217",
+          //   i
+          // ) as string;
         }
         // ----------------------------------
         //         customer:delete
         // ----------------------------------
         else if (operation === "delete") {
-          requestMethod = "DELETE";
           const customerId = this.getNodeParameter("id", i) as string;
           endpoint = `/api/REST/1.0/data/customer/${customerId}`;
           qs = {} as IDataObject;
@@ -1008,22 +1004,22 @@ export class PortaOne implements INodeType {
         //         customer:get
         // ----------------------------------
         else if (operation === "get") {
-          requestMethod = "GET";
           endpoint = `/rest/Customer/get_customer_info`;
           body.i_customer = this.getNodeParameter("i_customer", i) as number;
           body.login = this.getNodeParameter("login", i) as string;
           body.name = this.getNodeParameter("name", i) as string;
           body.refnum = this.getNodeParameter("refnum", i) as string;
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "customer_info";
         }
         // ----------------------------------
         //         customer:getAll
         // ----------------------------------
         else if (operation === "getAll") {
-          requestMethod = "GET";
           endpoint = "/rest/Customer/get_customer_list";
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "customer_list";
         }
       } else if (resource === "account") {
@@ -1031,7 +1027,6 @@ export class PortaOne implements INodeType {
         //         account:create
         // ----------------------------------
         if (operation === "create") {
-          requestMethod = "POST";
           endpoint = "/api/REST/2.0/assets/account";
 
           body = this.getNodeParameter("optionalFields", i) as IDataObject;
@@ -1045,7 +1040,6 @@ export class PortaOne implements INodeType {
         //         account:update
         // ----------------------------------
         else if (operation === "update") {
-          requestMethod = "PUT";
           const objectId = this.getNodeParameter("id", i) as string;
           endpoint = `/api/REST/2.0/assets/account/${objectId}`;
 
@@ -1061,38 +1055,55 @@ export class PortaOne implements INodeType {
         //         account:delete
         // ----------------------------------
         else if (operation === "delete") {
-          requestMethod = "DELETE";
-          const objectId = this.getNodeParameter("id", i) as string;
-          endpoint = `/api/REST/2.0/assets/account/${objectId}`;
-          qs = {} as IDataObject;
+          endpoint = `/rest/Account/terminate_account`;
+          body.i_account = this.getNodeParameter("i_account", i) as number;
+          body.force = this.getNodeParameter("force", i) as boolean;
+          body.release_assigned_did = this.getNodeParameter(
+            "release_assigned_did",
+            i
+          ) as boolean;
         }
         // ----------------------------------
         //         account:get
         // ----------------------------------
         else if (operation === "get") {
-          requestMethod = "GET";
           endpoint = "/rest/Account/get_account_info";
           body.i_account = this.getNodeParameter("i_account", i) as number;
           body.id = this.getNodeParameter("id", i) as string;
           body.login = this.getNodeParameter("login", i) as string;
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "account_info";
         }
         // ----------------------------------
         //         account:getALL
         // ----------------------------------
         else if (operation === "getAll") {
-          requestMethod = "GET";
           endpoint = "/rest/Account/get_account_list";
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "account_list";
+        }
+        // ----------------------------------
+        //         account:addAlias
+        // ----------------------------------
+        else if (operation === "addAlias") {
+          endpoint = "/rest/Account/add_alias";
+          body.alias_info = this.getNodeParameter(
+            "additionalFields",
+            i
+          ) as IDataObject;
+          body.alias_info.i_master_account = this.getNodeParameter(
+            "i_master_account",
+            i
+          ) as number;
+          body.alias_info.id = this.getNodeParameter("id", i) as number;
         }
       } else if (resource === "invoice") {
         // ----------------------------------
         //         invoice:create
         // ----------------------------------
         if (operation === "create") {
-          requestMethod = "POST";
           endpoint = "/api/REST/2.0/assets/invoice";
 
           body = this.getNodeParameter("optionalFields", i) as IDataObject;
@@ -1106,7 +1117,6 @@ export class PortaOne implements INodeType {
         //         invoice:update
         // ----------------------------------
         else if (operation === "update") {
-          requestMethod = "PUT";
           const objectId = this.getNodeParameter("id", i) as string;
           endpoint = `/api/REST/2.0/assets/invoice/${objectId}`;
 
@@ -1122,7 +1132,6 @@ export class PortaOne implements INodeType {
         //         invoice:delete
         // ----------------------------------
         else if (operation === "delete") {
-          requestMethod = "DELETE";
           const objectId = this.getNodeParameter("id", i) as string;
           endpoint = `/api/REST/2.0/assets/invoice/${objectId}`;
           qs = {} as IDataObject;
@@ -1131,7 +1140,6 @@ export class PortaOne implements INodeType {
         //         invoice:get
         // ----------------------------------
         else if (operation === "get") {
-          requestMethod = "GET";
           endpoint = "/rest/Invoice/get_invoice_info";
           body.i_invoice = this.getNodeParameter("i_invoice", i) as number;
           body.i_customer = this.getNodeParameter("i_customer", i) as string;
@@ -1139,54 +1147,69 @@ export class PortaOne implements INodeType {
             "invoice_number",
             i
           ) as string;
+          body.get_pdf = 1;
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "invoice_info";
         }
         // ----------------------------------
         //         invoice:getALL
         // ----------------------------------
         else if (operation === "getAll") {
-          requestMethod = "GET";
           endpoint = "/rest/Invoice/get_invoice_list";
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "invoice_list";
+          // ----------------------------------
+          //         invoice:applyAdjustment
+          // ----------------------------------
+        } else if (operation === "applyAdjustment") {
+          endpoint = "/rest/Invoice/apply_invoice_adjustment";
+          body.amount = this.getNodeParameter("amount", i) as number;
+          body.i_invoice = this.getNodeParameter("i_invoice", i) as number;
+          body.internal_comment = this.getNodeParameter(
+            "internal_comment",
+            i
+          ) as string;
+          body.refund_to_cc = this.getNodeParameter(
+            "refund_to_cc",
+            i
+          ) as boolean;
+          body.visible_comment = this.getNodeParameter(
+            "visible_comment",
+            i
+          ) as string;
         }
       } else if (resource === "customerExtension") {
         // ----------------------------------
         //         customerExtension:create
         // ----------------------------------
         if (operation === "create") {
-          requestMethod = "POST";
-          endpoint = "/api/REST/2.0/assets/extension";
+          endpoint = "/rest/Customer/add_customer_extension";
 
-          body = this.getNodeParameter("optionalFields", i) as IDataObject;
-          body.name = this.getNodeParameter("name", i) as string;
-          const { fields } = this.getNodeParameter("customFields", i) as any;
-          body.fields = fields;
-
-          qs = {} as IDataObject;
+          body = this.getNodeParameter("additionalFields", i) as IDataObject;
+          body.i_account = this.getNodeParameter("i_account", i) as number;
+          body.i_customer = this.getNodeParameter("i_customer", i) as number;
+          body.i_product = this.getNodeParameter("i_product", i) as number;
+          body.id = this.getNodeParameter("id", i) as string;
         }
         // ----------------------------------
         //         customerExtension:update
         // ----------------------------------
         else if (operation === "update") {
-          requestMethod = "PUT";
-          const objectId = this.getNodeParameter("id", i) as string;
-          endpoint = `/api/REST/2.0/assets/extension/${objectId}`;
+          endpoint = "/rest/Customer/update_customer_extension";
 
-          body = this.getNodeParameter("optionalFields", i) as IDataObject;
-          body.id = objectId;
-          body.name = this.getNodeParameter("name", i) as string;
-          const { fields } = this.getNodeParameter("customFields", i) as any;
-          body.fields = fields;
-
-          qs = {} as IDataObject;
+          body = this.getNodeParameter("additionalFields", i) as IDataObject;
+          body.i_c_ext = this.getNodeParameter("i_c_ext", i) as number;
+          // body.i_account = this.getNodeParameter("i_account", i) as number;
+          body.i_customer = this.getNodeParameter("i_customer", i) as number;
+          // body.i_product = this.getNodeParameter("i_product", i) as number;
+          // body.id = this.getNodeParameter("id", i) as string;
         }
         // ----------------------------------
         //         customerExtension:delete
         // ----------------------------------
         else if (operation === "delete") {
-          requestMethod = "DELETE";
           const objectId = this.getNodeParameter("id", i) as string;
           endpoint = `/api/REST/2.0/assets/extension/${objectId}`;
           qs = {} as IDataObject;
@@ -1195,7 +1218,6 @@ export class PortaOne implements INodeType {
         //         customerExtension:get
         // ----------------------------------
         else if (operation === "get") {
-          requestMethod = "GET";
           endpoint = "/rest/Customer/get_extensions_info";
           body.i_extension = this.getNodeParameter("i_extension", i) as number;
           body.i_customer = this.getNodeParameter("i_customer", i) as string;
@@ -1204,16 +1226,17 @@ export class PortaOne implements INodeType {
             i
           ) as string;
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "extensions_info";
         }
         // ----------------------------------
         //         customerExtension:getALL
         // ----------------------------------
         else if (operation === "getAll") {
-          requestMethod = "GET";
           endpoint = "/rest/Customer/get_extensions_list";
           body.i_customer = this.getNodeParameter("i_customer", i) as string;
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "extensions_list";
         }
       } else if (resource === "customerXdrs") {
@@ -1221,7 +1244,6 @@ export class PortaOne implements INodeType {
         //         customerXdrs:create
         // ----------------------------------
         if (operation === "create") {
-          requestMethod = "POST";
           endpoint = "/api/REST/2.0/assets/extension";
 
           body = this.getNodeParameter("optionalFields", i) as IDataObject;
@@ -1235,7 +1257,6 @@ export class PortaOne implements INodeType {
         //         customerXdrs:update
         // ----------------------------------
         else if (operation === "update") {
-          requestMethod = "PUT";
           const objectId = this.getNodeParameter("id", i) as string;
           endpoint = `/api/REST/2.0/assets/extension/${objectId}`;
 
@@ -1251,7 +1272,6 @@ export class PortaOne implements INodeType {
         //         customerXdrs:delete
         // ----------------------------------
         else if (operation === "delete") {
-          requestMethod = "DELETE";
           const objectId = this.getNodeParameter("id", i) as string;
           endpoint = `/api/REST/2.0/assets/extension/${objectId}`;
           qs = {} as IDataObject;
@@ -1260,7 +1280,6 @@ export class PortaOne implements INodeType {
         //         customerXdrs:get
         // ----------------------------------
         else if (operation === "get") {
-          requestMethod = "GET";
           endpoint = "/rest/Customer/get_extensions_info";
           body.i_extension = this.getNodeParameter("i_extension", i) as number;
           body.i_customer = this.getNodeParameter("i_customer", i) as string;
@@ -1269,26 +1288,19 @@ export class PortaOne implements INodeType {
             i
           ) as string;
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "extensions_info";
         }
         // ----------------------------------
         //         customerXdrs:getALL
         // ----------------------------------
         else if (operation === "getAll") {
-          requestMethod = "GET";
           endpoint = "/rest/Customer/get_customer_xdrs";
           body.i_customer = this.getNodeParameter("i_customer", i) as string;
           body.to_date = this.getNodeParameter("to_date", i) as string;
-          body.to_date = body.to_date
-            .replace("T", " ")
-            .replace("Z", "")
-            .replace(".000", "");
           body.from_date = this.getNodeParameter("from_date", i) as string;
-          body.from_date = body.from_date
-            .replace("T", " ")
-            .replace("Z", "")
-            .replace(".000", "");
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "xdr_list";
         }
       } else if (resource === "didNumbers") {
@@ -1296,7 +1308,6 @@ export class PortaOne implements INodeType {
         //         didNumbers:create
         // ----------------------------------
         if (operation === "create") {
-          requestMethod = "POST";
           endpoint = "/api/REST/2.0/assets/extension";
 
           body = this.getNodeParameter("optionalFields", i) as IDataObject;
@@ -1310,7 +1321,6 @@ export class PortaOne implements INodeType {
         //         didNumbers:update
         // ----------------------------------
         else if (operation === "update") {
-          requestMethod = "PUT";
           const objectId = this.getNodeParameter("id", i) as string;
           endpoint = `/api/REST/2.0/assets/extension/${objectId}`;
 
@@ -1326,7 +1336,6 @@ export class PortaOne implements INodeType {
         //         didNumbers:delete
         // ----------------------------------
         else if (operation === "delete") {
-          requestMethod = "DELETE";
           const objectId = this.getNodeParameter("id", i) as string;
           endpoint = `/api/REST/2.0/assets/extension/${objectId}`;
           qs = {} as IDataObject;
@@ -1335,7 +1344,6 @@ export class PortaOne implements INodeType {
         //         didNumbers:get
         // ----------------------------------
         else if (operation === "get") {
-          requestMethod = "GET";
           endpoint = "/rest/Customer/get_extensions_info";
           body.i_extension = this.getNodeParameter("i_extension", i) as number;
           body.i_customer = this.getNodeParameter("i_customer", i) as string;
@@ -1344,16 +1352,28 @@ export class PortaOne implements INodeType {
             i
           ) as string;
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "extensions_info";
         }
         // ----------------------------------
         //         didNumbers:getALL
         // ----------------------------------
         else if (operation === "getAll") {
-          requestMethod = "GET";
           endpoint = "/rest/DID/get_number_list";
 
+          simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "number_list";
+        }
+        // ----------------------------------
+        //         didNumbers:assignToCustomer
+        // ----------------------------------
+        else if (operation === "assignToCustomer") {
+          endpoint = "/rest/DID/assign_did_to_customer";
+          body.i_customer = this.getNodeParameter("i_customer", i) as number;
+          body.i_did_number = this.getNodeParameter(
+            "i_did_number",
+            i
+          ) as number;
         }
       }
 
@@ -1367,7 +1387,6 @@ export class PortaOne implements INodeType {
         throw error;
       }
 
-      simplify = this.getNodeParameter("simplify", i) as boolean;
       if (simplify) {
         responseData = responseData[dataKey];
       }

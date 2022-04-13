@@ -1,6 +1,6 @@
 import { INodeProperties } from "n8n-workflow";
 
-export const didNumbers = [
+export const didNumbersDescription = [
   // ----------------------------------
   //         DID Numbers - Operations
   // ----------------------------------
@@ -39,15 +39,47 @@ export const didNumbers = [
         value: "getAll",
         description: "Get data of all xdrs",
       },
+      {
+        name: "Assign to customer",
+        value: "assignToCustomer",
+        description: "Get data of all xdrs",
+      },
     ],
-    default: "create",
+    default: "getAll",
     description: "The operation to perform.",
   },
   // ----------------------------------
-  //         DID Numbers - Get
+  //         DID Numbers - AssignToCustomer
   // ----------------------------------
+  {
+    displayName: "Customer ID",
+    name: "i_customer",
+    type: "number",
+    required: true,
+    default: 0,
+    displayOptions: {
+      show: {
+        operation: ["assignToCustomer"],
+        resource: ["didNumbers"],
+      },
+    },
+    description: "The ID of the customer record to which the DID will belong.",
+  },
+  {
+    displayName: "DID number ID",
+    name: "i_did_number",
+    type: "number",
+    required: true,
+    default: 0,
+    displayOptions: {
+      show: {
+        operation: ["assignToCustomer"],
+        resource: ["didNumbers"],
+      },
+    },
+    description: "The DID Number ID.",
+  },
 
-  
   // --------------------------
   //         Extension - Create
   // --------------------------

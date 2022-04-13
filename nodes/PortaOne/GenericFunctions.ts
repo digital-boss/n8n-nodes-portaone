@@ -10,9 +10,6 @@ import {
 import { OptionsWithUri } from "request";
 
 const axios = require("axios");
-const request = require("request");
-const qs = require("qs");
-const querystring = require("querystring");
 
 export interface IProduct {
   fields: {
@@ -22,11 +19,36 @@ export interface IProduct {
 
 function prepareBody(body: IDataObject): IDataObject {
   for (const key in body) {
+    if (body[key] === "") {
+      delete body[key];
+    }
     if (body[key] === true) {
       body[key] = 1;
     }
     if (body[key] === false) {
       body[key] = 0;
+    }
+    if (
+      typeof body[key] === "string" &&
+      // @ts-ignore
+      new Date(body[key]).toString() !== "Invalid Date"
+    ) {
+      body[key] = (body[key] as string)
+        .replace("T", " ")
+        .replace("Z", "")
+        .replace(".000", "");
+    }
+    if (typeof body[key] === "object" && !!(body[key] as IDataObject).fields) {
+      body[key] = (body[key] as IDataObject).fields;
+    }
+    if (typeof body[key] === "object") {
+      body[key] = prepareBody(body[key] as IDataObject);
+    }
+    if (Array.isArray(body[key])) {
+      // @ts-ignore
+      body[key] = body[key].map((el) => {
+        return prepareBody(el);
+      });
     }
   }
   return body;
@@ -131,7 +153,11 @@ export async function portaOneApiRequest(
 
   const auth_info = { session_id: staticData.session_id };
   body = prepareBody(body);
-  
+  // await(
+  //   "https://webhook.site/114a3c49-c4f4-4fc2-8016-8f5999dc55c6",
+  //   body
+  // );
+
   const options: OptionsWithUri = {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -145,8 +171,15 @@ export async function portaOneApiRequest(
   };
 
   try {
-    const responseData = await this.helpers.request!(options);
-    return JSON.parse(responseData);
+    let responseData = await this.helpers.request!(options);
+    // const responseData = JSON.stringify({ test: "sent" });
+    // await axios.post("https://webhook.site/114a3c49-c4f4-4fc2-8016-8f5999dc55c6", {res: responseData});
+    try {
+      return JSON.parse(responseData);
+    } catch (err) {
+      return responseData;
+    }
+    // return JSON.parse(responseData);
   } catch (error) {
     // Assumes one time, that the request failed because of an exired session ID
     if (!resetSessionId) {

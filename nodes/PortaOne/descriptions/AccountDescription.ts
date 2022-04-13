@@ -24,11 +24,11 @@ export const accountDescription = [
       //     value: "update",
       //     description: "Update an account",
       //   },
-      //   {
-      //     name: "Terminate",
-      //     value: "delete",
-      //     description: "Terminate an account",
-      //   },
+      {
+        name: "Terminate",
+        value: "delete",
+        description: "Terminate an account",
+      },
       {
         name: "Get",
         value: "get",
@@ -39,12 +39,17 @@ export const accountDescription = [
         value: "getAll",
         description: "Get data of all accounts",
       },
+      {
+        name: "Add Alias",
+        value: "addAlias",
+        description: "Add an alias to an account",
+      },
     ],
     default: "create",
     description: "The operation to perform.",
   },
   // ----------------------------------
-  //         Customers - Get
+  //         Accounts - Get
   // ----------------------------------
   {
     displayName: "Account ID",
@@ -87,6 +92,123 @@ export const accountDescription = [
     },
     description:
       "The account login for the account web self-care interface, unique in an environment. Note: please use either account ID or ID (PIN) or login to look for an account (only one of the fields is applicable).",
+  },
+  // ----------------------------------
+  //         Accounts - Delete
+  // ----------------------------------
+  {
+    displayName: "Account ID",
+    name: "i_account",
+    type: "number",
+    required: true,
+    displayOptions: {
+      show: {
+        resource: ["account"],
+        operation: ["delete"],
+      },
+    },
+    default: 0,
+    description: "The unique ID of the account.",
+  },
+  {
+    displayName: "Force?",
+    name: "force",
+    type: "boolean",
+    displayOptions: {
+      show: {
+        resource: ["account"],
+        operation: ["delete"],
+      },
+    },
+    default: false,
+    description: "The flag specifies whether associated non-disconnectable active sessions should be ignored.",
+  },
+  {
+    displayName: "Release assigned did?",
+    name: "release_assigned_did",
+    type: "boolean",
+    displayOptions: {
+      show: {
+        resource: ["account"],
+        operation: ["delete"],
+      },
+    },
+    default: true,
+    description: "The flag specifies whether the previously assigned DID number should be released to the pool (true by default).",
+  },
+  // ----------------------------------
+  //         Accounts - Add Alias
+  // ----------------------------------
+  {
+    displayName: "Master Account ID",
+    name: "i_master_account",
+    type: "number",
+    displayOptions: {
+      show: {
+        resource: ["account"],
+        operation: ["addAlias"],
+      },
+    },
+    default: 0,
+    description:
+      "The ID of the parent account. Note: this field cannot be changed once the alias is added.",
+  },
+  {
+    displayName: "Alias ID",
+    name: "id",
+    type: "number",
+    displayOptions: {
+      show: {
+        resource: ["account"],
+        operation: ["addAlias"],
+      },
+    },
+    default: 0,
+    description: "The unique ID for the alias.",
+  },
+  {
+    displayName: "Additional Fields",
+    name: "additionalFields",
+    type: "collection",
+    displayOptions: {
+      show: {
+        resource: ["account"],
+        operation: ["addAlias"],
+      },
+    },
+    default: {},
+    description: "Additional optional fields of the customer.",
+    placeholder: "Add Field",
+    options: [
+      {
+        displayName: "Blocked?",
+        name: "blocked",
+        type: "options",
+        options: [
+          { name: "Yes", value: "Y" },
+          { name: "No", value: "N" },
+        ],
+        default: "No",
+        description:
+          "The flag indicates whether the account's calls are enabled. Shows whether SIP auth is enabled for the alias. Possible values: N - SIP auth is enabled for the alias and calls are allowed; Y - SIP auth is disabled for the alias and calls are disabled.",
+      },
+      {
+        displayName: "Account role ID",
+        name: "i_account_role",
+        type: "number",
+        default: 1,
+        description:
+          "The ID of the account role. Used to define what a specific account is designated for (e.g. whether the account represents a phone line or a top-up voucher) and executes account ID validation. Possible values: 1 - Universal; 2 - Phone line; 3 - Auto attendant; 4 - Prepaid card; 5 - PINless; 6 - IPv4 address; 7 - User@domain; 8 - Mobile.",
+      },
+      {
+        displayName: "Realm",
+        name: "realm",
+        type: "string",
+        default: "",
+        description:
+          "A custom string. Realm is used to impose a scope of uniqueness for account IDs.",
+      },
+    ],
   },
   // --------------------------
   //         Account - Create
