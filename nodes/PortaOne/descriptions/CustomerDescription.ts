@@ -103,6 +103,167 @@ export const customerDescription = [
       "The reference number (custom field). Note: one of the following is used to get the customer information: customer ID, refnum, name, or login.",
   },
   // --------------------------
+  //         Customer - GetAll
+  // --------------------------
+  {
+    displayName: "Additional Fields",
+    name: "additionalFields",
+    type: "collection",
+    displayOptions: {
+      show: {
+        resource: ["customer"],
+        operation: ["getAll"],
+      },
+    },
+    default: {},
+    description: "Additional optional fields of the customer.",
+    placeholder: "Add Field",
+    options: [
+      {
+        displayName: "Bill Status",
+        name: "bill_status",
+        type: "options",
+        options: [
+          { name: "Open", value: "O" },
+          { name: "Suspended", value: "S" },
+          { name: "Closed", value: "C" },
+          { name: "Exported", value: "E" },
+          { name: "Deactivated", value: "D" },
+        ],
+
+        default: "O",
+        description: "The billing status of the customer to search by.",
+      },
+      {
+        displayName: "Check usage?",
+        name: "check_usage",
+        type: "boolean",
+        default: false,
+        description: "Check whether the customer has entities assigned",
+      },
+      {
+        displayName: "Company name",
+        name: "companyname",
+        type: "string",
+        default: "",
+        description: "Customer's company name",
+      },
+      {
+        displayName: "Credit limit exceeded?",
+        name: "credit_limit_exceeded",
+        type: "boolean",
+        default: false,
+        description:
+          "Include into the response only the customers who exceeded their credit limit.",
+      },
+      {
+        displayName: "First name",
+        name: "firstname",
+        type: "string",
+        default: "",
+        description: "Customer's first name",
+      },
+      {
+        displayName: "Get statuses?",
+        name: "get_statuses",
+        type: "boolean",
+        default: false,
+        description: "Get the statuses of the customers",
+      },
+      {
+        displayName: "Has invoices?",
+        name: "has_invoices",
+        type: "boolean",
+        default: false,
+        description: "Filters customer list by invoice presence.",
+      },
+      {
+        displayName: "Customer type ID",
+        name: "i_customer_type",
+        type: "number",
+        default: 0,
+        description:
+          "The type of the customer. Possible values: 1 - Retail customer or subcustomer, 2 - Reseller, 3 - Distributor",
+      },
+      {
+        displayName: "Main customer ID",
+        name: "i_main_customer",
+        type: "number",
+        default: 0,
+        description:
+          "The unique ID of the 'main' customer (Main Office (HQ) customer) record within one linked customers' group",
+      },
+      {
+        displayName: "Office type ID",
+        name: "i_office_type",
+        type: "number",
+        default: 0,
+        description:
+          "The unique ID of the Office_Types record. Possible values: 1 - none; 2 - branch_office; 3 - main_office",
+      },
+      {
+        displayName: "Parent ID",
+        name: "i_parent",
+        type: "number",
+        default: 0,
+        description: "The unique ID of the reseller who manages the customer",
+      },
+      {
+        displayName: "Last name",
+        name: "lastname",
+        type: "string",
+        default: "",
+        description: "Customer's last name",
+      },
+      {
+        displayName: "Limit",
+        name: "limit",
+        type: "number",
+        default: 100,
+        description: "The number of rows to retrieve",
+      },
+      {
+        displayName: "Name",
+        name: "name",
+        type: "string",
+        default: "",
+        description: "The customer name pattern",
+      },
+      {
+        displayName: "Spending limit reached?",
+        name: "spending_limit_reached",
+        type: "boolean",
+        default: false,
+        description:
+          "Include into the response only the customers who reached their spending limit.",
+      },
+      {
+        displayName: "Search",
+        name: "search",
+        type: "collection",
+        default: {},
+        description: "Search customers by field(s) and value",
+        placeholder: "Add Search Option",
+        options: [
+          {
+            displayName: "Search by",
+            name: "search_by",
+            type: "string",
+            default: "",
+            description: "Single or comma seperated list of fields to search by. Eg: 'name' or 'firstname,lastname,companyname'",
+          },
+          {
+            displayName: "Value",
+            name: "value",
+            type: "string",
+            default: "",
+            description: "Value to search by",
+          },
+        ],
+      },
+    ],
+  },
+  // --------------------------
   //         Customer - Create
   // --------------------------
   {
@@ -679,7 +840,8 @@ export const customerDescription = [
       },
     },
     default: 0,
-    description: "The unique ID of the customer record. A customer is a client (an individual or a company) to whom the services are provided.",
+    description:
+      "The unique ID of the customer record. A customer is a client (an individual or a company) to whom the services are provided.",
   },
   {
     displayName: "Additional Fields",

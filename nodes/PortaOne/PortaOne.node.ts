@@ -986,11 +986,6 @@ export class PortaOne implements INodeType {
             i
           ) as IDataObject;
           body.customer_info.i_customer = this.getNodeParameter("i_customer", i) as number;
-          // body.customer_info.name = this.getNodeParameter("name", i) as string;
-          // body.customer_info.iso_4217 = this.getNodeParameter(
-          //   "iso_4217",
-          //   i
-          // ) as string;
         }
         // ----------------------------------
         //         customer:delete
@@ -1018,6 +1013,7 @@ export class PortaOne implements INodeType {
         // ----------------------------------
         else if (operation === "getAll") {
           endpoint = "/rest/Customer/get_customer_list";
+          body = this.getNodeParameter("additionalFields", i) as IDataObject;
 
           simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "customer_list";
@@ -1080,6 +1076,7 @@ export class PortaOne implements INodeType {
         // ----------------------------------
         else if (operation === "getAll") {
           endpoint = "/rest/Account/get_account_list";
+          body = this.getNodeParameter("additionalFields", i) as IDataObject;
 
           simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "account_list";
@@ -1157,6 +1154,7 @@ export class PortaOne implements INodeType {
         // ----------------------------------
         else if (operation === "getAll") {
           endpoint = "/rest/Invoice/get_invoice_list";
+          body = this.getNodeParameter("additionalFields", i) as IDataObject;
 
           simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "invoice_list";
@@ -1234,6 +1232,7 @@ export class PortaOne implements INodeType {
         // ----------------------------------
         else if (operation === "getAll") {
           endpoint = "/rest/Customer/get_extensions_list";
+          body = this.getNodeParameter("additionalFields", i) as IDataObject;
           body.i_customer = this.getNodeParameter("i_customer", i) as string;
 
           simplify = this.getNodeParameter("simplify", i) as boolean;
@@ -1360,6 +1359,7 @@ export class PortaOne implements INodeType {
         // ----------------------------------
         else if (operation === "getAll") {
           endpoint = "/rest/DID/get_number_list";
+          body = this.getNodeParameter("additionalFields", i) as IDataObject;
 
           simplify = this.getNodeParameter("simplify", i) as boolean;
           dataKey = "number_list";

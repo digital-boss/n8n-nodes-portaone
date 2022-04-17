@@ -50,6 +50,9 @@ function prepareBody(body: IDataObject): IDataObject {
         return prepareBody(el);
       });
     }
+    if (key === "search_by") {
+      body[key] = (body[key] as string).split(",");
+    }
   }
   return body;
 }
@@ -153,7 +156,7 @@ export async function portaOneApiRequest(
 
   const auth_info = { session_id: staticData.session_id };
   body = prepareBody(body);
-  // await(
+  // await axios.post(
   //   "https://webhook.site/114a3c49-c4f4-4fc2-8016-8f5999dc55c6",
   //   body
   // );

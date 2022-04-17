@@ -93,6 +93,117 @@ export const accountDescription = [
     description:
       "The account login for the account web self-care interface, unique in an environment. Note: please use either account ID or ID (PIN) or login to look for an account (only one of the fields is applicable).",
   },
+  // --------------------------
+  //         Account - GetAll
+  // --------------------------
+  {
+    displayName: "Additional Fields",
+    name: "additionalFields",
+    type: "collection",
+    displayOptions: {
+      show: {
+        resource: ["account"],
+        operation: ["getAll"],
+      },
+    },
+    default: {},
+    description: "Additional optional fields of the account.",
+    placeholder: "Add Field",
+    options: [
+      {
+        displayName: "Company name",
+        name: "companyname",
+        type: "string",
+        default: "",
+        description: "Customer's company name",
+      },
+      {
+        displayName: "DID number",
+        name: "did_number",
+        type: "string",
+        default: "",
+        description:
+          "The search pattern for the account's DID number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+      },
+      {
+        displayName: "Extension ID",
+        name: "extension_id",
+        type: "string",
+        default: "",
+        description:
+          "The search pattern for the account's extension number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+      },
+      {
+        displayName: "Extension name",
+        name: "extension_name",
+        type: "string",
+        default: "",
+        description:
+          "The search pattern for the account's extension name. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+      },
+      {
+        displayName: "Get not closed accounts?",
+        name: "get_not_closed_accounts",
+        type: "boolean",
+        default: false,
+        description:
+          "Indicates whether to fetch only accounts with statuses different from 'closed'",
+      },
+      {
+        displayName: "Get only real accounts?",
+        name: "get_only_real_accounts",
+        type: "boolean",
+        default: false,
+        description:
+          "Indicates whether to fetch only debit, credit and beneficiary accounts",
+      },
+      {
+        displayName: "Get statuses?",
+        name: "get_statuses",
+        type: "boolean",
+        default: false,
+        description: "Indicates whether to fetch the statuses of the accounts",
+      },
+      {
+        displayName: "Customer ID",
+        name: "i_customer",
+        type: "number",
+        default: 0,
+        description:
+          "Filters accounts by the ID of the customer record to which the account belongs",
+      },
+      {
+        displayName: "Customer site ID",
+        name: "i_customer_site",
+        type: "number",
+        default: 0,
+        description: "Filters accounts by the ID of the customer site",
+      },
+      {
+        displayName: "Limit",
+        name: "limit",
+        type: "number",
+        default: 100,
+        description: "The number of rows to retrieve",
+      },
+      {
+        displayName: "Sip status?",
+        name: "sip_status",
+        type: "boolean",
+        default: false,
+        description:
+          "Indicates whether to fetch accounts which are used by a SIP phone to register with a PortaSIP server",
+      },
+      {
+        displayName: "State",
+        name: "state",
+        type: "string",
+        default: "",
+        description:
+          "Filters accounts by the province or state of the account owner's address (the province or state where the account owner resides)",
+      },
+    ],
+  },
   // ----------------------------------
   //         Accounts - Delete
   // ----------------------------------
@@ -121,7 +232,8 @@ export const accountDescription = [
       },
     },
     default: false,
-    description: "The flag specifies whether associated non-disconnectable active sessions should be ignored.",
+    description:
+      "The flag specifies whether associated non-disconnectable active sessions should be ignored.",
   },
   {
     displayName: "Release assigned did?",
@@ -134,7 +246,8 @@ export const accountDescription = [
       },
     },
     default: true,
-    description: "The flag specifies whether the previously assigned DID number should be released to the pool (true by default).",
+    description:
+      "The flag specifies whether the previously assigned DID number should be released to the pool (true by default).",
   },
   // ----------------------------------
   //         Accounts - Add Alias

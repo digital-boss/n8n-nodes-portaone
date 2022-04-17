@@ -107,6 +107,71 @@ export const invoiceDescription = [
       "The flag indicates whether to include the PDF file in the response. Note: if the PDF file does not exist, only the invoice information will be included in the response.",
   },
   // --------------------------
+  //         Invoice - GetAll
+  // --------------------------
+  {
+    displayName: "Additional Fields",
+    name: "additionalFields",
+    type: "collection",
+    displayOptions: {
+      show: {
+        resource: ["invoice"],
+        operation: ["getAll"],
+      },
+    },
+    default: {},
+    description: "Additional optional fields of the invoice.",
+    placeholder: "Add Field",
+    options: [
+      {
+        displayName: "Customer ID",
+        name: "i_customer",
+        type: "number",
+        default: 0,
+        description:
+          "The unique ID of the customer the invoice belongs to",
+      },
+      {
+        displayName: "Parent ID",
+        name: "i_parent",
+        type: "number",
+        default: 0,
+        description:
+          "The unique ID of the reseller (to get invoices for all subcustomers of this reseller)",
+      },
+      {
+        displayName: "Invoice number",
+        name: "invoice_number",
+        type: "number",
+        default: 0,
+        description: "Refers to Invoice Number - unique identifier of the invoice",
+      },
+      {
+        displayName: "Issued after",
+        name: "issued_after",
+        type: "dateTime",
+        default: "",
+        description:
+          "Fetch invoices with the 'issue_date' later than this date",
+      },
+      {
+        displayName: "Issued before",
+        name: "issued_before",
+        type: "dateTime",
+        default: "",
+        description:
+          "Fetch invoices with the 'issue_date' earlier than this date",
+      },
+      {
+        displayName: "Limit",
+        name: "limit",
+        type: "number",
+        default: 100,
+        description: "Limit of invoices (maximum quantity of invoices)",
+      }
+    ],
+  },
+  // --------------------------
   //         Invoice - Apply Adjustment
   // --------------------------
   {

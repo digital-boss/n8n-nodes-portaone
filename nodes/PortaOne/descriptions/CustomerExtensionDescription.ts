@@ -162,6 +162,63 @@ export const customerExtensionDescription = [
       },
     ],
   },
+  // --------------------------
+  //         Customer Extension - GetAll
+  // --------------------------
+  {
+    displayName: "Additional Fields",
+    name: "additionalFields",
+    type: "collection",
+    displayOptions: {
+      show: {
+        resource: ["customerExtension"],
+        operation: ["getAll"],
+      },
+    },
+    default: {},
+    description: "Additional optional fields of the customer extension.",
+    placeholder: "Add Field",
+    options: [
+      {
+        displayName: "Account ID",
+        name: "account_id",
+        type: "number",
+        default: 0,
+        description: "Search pattern for account IDs",
+      },
+      {
+        displayName: "Extension",
+        name: "extension",
+        type: "string",
+        default: "",
+        description:
+          "Search pattern for extension numbers. Use the following wildcard symbols: The percentage ( % ) wildcard allows you to match any string of zero or more characters; The underscore ( _ ) wildcard allows you to match any single characters",
+      },
+      {
+        displayName: "Get main office extensions?",
+        name: "get_main_office_extensions",
+        type: "boolean",
+        default: false,
+        description:
+          "If set to '1', then additionally a list of main office extensions will be provided for its branch office",
+      },
+      {
+        displayName: "Limit",
+        name: "limit",
+        type: "number",
+        default: 100,
+        description: "The number of rows to retrieve",
+      },
+      {
+        displayName: "Name",
+        name: "name",
+        type: "string",
+        default: "",
+        description:
+          "Search pattern for extension names. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+      },
+    ],
+  },
   // ----------------------------------
   //         Customer Extensions - Update
   // ----------------------------------
@@ -198,8 +255,7 @@ export const customerExtensionDescription = [
         name: "i_account",
         type: "number",
         default: 0,
-        description:
-          "The unique ID of the account.",
+        description: "The unique ID of the account.",
       },
       {
         displayName: "CPE ID",
