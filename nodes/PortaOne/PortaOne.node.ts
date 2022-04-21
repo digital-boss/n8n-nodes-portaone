@@ -7,6 +7,8 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 
+import { version } from '../version';
+
 import { accountDescription } from './descriptions/AccountDescription';
 import { customerDescription } from './descriptions/CustomerDescription';
 import { invoiceDescription } from './descriptions/InvoiceDescription';
@@ -26,7 +28,7 @@ export class PortaOne implements INodeType {
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Consume PortaOne REST API',
+		description: `Consume PortaOne REST API (v.${version})`,
 		defaults: {
 			name: 'PortaOne',
 			color: '#FC636B',
