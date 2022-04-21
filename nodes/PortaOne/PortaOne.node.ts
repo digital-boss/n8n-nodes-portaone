@@ -957,6 +957,7 @@ export class PortaOne implements INodeType {
 		let dataKey = '';
 		let simplify = false;
 
+		// tslint:disable-next-line:no-any
 		let body: any = {};
 		let qs: IDataObject = {};
 		let responseData;
@@ -1029,6 +1030,7 @@ export class PortaOne implements INodeType {
 
 					body = this.getNodeParameter('optionalFields', i) as IDataObject;
 					body.name = this.getNodeParameter('name', i) as string;
+					// tslint:disable-next-line:no-any
 					const { fields } = this.getNodeParameter('customFields', i) as any;
 					body.fields = fields;
 
@@ -1044,6 +1046,7 @@ export class PortaOne implements INodeType {
 					body = this.getNodeParameter('optionalFields', i) as IDataObject;
 					body.id = objectId;
 					body.name = this.getNodeParameter('name', i) as string;
+					// tslint:disable-next-line:no-any
 					const { fields } = this.getNodeParameter('customFields', i) as any;
 					body.fields = fields;
 
@@ -1107,6 +1110,7 @@ export class PortaOne implements INodeType {
 
 					body = this.getNodeParameter('optionalFields', i) as IDataObject;
 					body.name = this.getNodeParameter('name', i) as string;
+					// tslint:disable-next-line:no-any
 					const { fields } = this.getNodeParameter('customFields', i) as any;
 					body.fields = fields;
 
@@ -1122,6 +1126,7 @@ export class PortaOne implements INodeType {
 					body = this.getNodeParameter('optionalFields', i) as IDataObject;
 					body.id = objectId;
 					body.name = this.getNodeParameter('name', i) as string;
+					// tslint:disable-next-line:no-any
 					const { fields } = this.getNodeParameter('customFields', i) as any;
 					body.fields = fields;
 
@@ -1249,6 +1254,7 @@ export class PortaOne implements INodeType {
 
 					body = this.getNodeParameter('optionalFields', i) as IDataObject;
 					body.name = this.getNodeParameter('name', i) as string;
+					// tslint:disable-next-line:no-any
 					const { fields } = this.getNodeParameter('customFields', i) as any;
 					body.fields = fields;
 
@@ -1264,6 +1270,7 @@ export class PortaOne implements INodeType {
 					body = this.getNodeParameter('optionalFields', i) as IDataObject;
 					body.id = objectId;
 					body.name = this.getNodeParameter('name', i) as string;
+					// tslint:disable-next-line:no-any
 					const { fields } = this.getNodeParameter('customFields', i) as any;
 					body.fields = fields;
 
@@ -1313,6 +1320,7 @@ export class PortaOne implements INodeType {
 
 					body = this.getNodeParameter('optionalFields', i) as IDataObject;
 					body.name = this.getNodeParameter('name', i) as string;
+					// tslint:disable-next-line:no-any
 					const { fields } = this.getNodeParameter('customFields', i) as any;
 					body.fields = fields;
 
@@ -1328,6 +1336,7 @@ export class PortaOne implements INodeType {
 					body = this.getNodeParameter('optionalFields', i) as IDataObject;
 					body.id = objectId;
 					body.name = this.getNodeParameter('name', i) as string;
+					// tslint:disable-next-line:no-any
 					const { fields } = this.getNodeParameter('customFields', i) as any;
 					body.fields = fields;
 
@@ -1381,6 +1390,7 @@ export class PortaOne implements INodeType {
 
 			try {
 				responseData = await portaOneApiRequest.call(this, endpoint, body);
+				// tslint:disable-next-line:no-any
 			} catch (error: any) {
 				if (this.continueOnFail()) {
 					returnData.push({ error: error.message });

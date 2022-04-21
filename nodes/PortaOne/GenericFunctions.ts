@@ -18,6 +18,7 @@ export interface IProduct {
 }
 
 function prepareBody(body: IDataObject): IDataObject {
+	// tslint:disable-next-line:forin
 	for (const key in body) {
 		if (body[key] === '') {
 			delete body[key];
@@ -128,6 +129,7 @@ export async function portaOneApiRequest(
 	endpoint: string,
 	body: IDataObject = {},
 	resetSessionId = false,
+	// tslint:disable-next-line:no-any
 ): Promise<any> {
 	const method = 'POST';
 	const staticData = this.getWorkflowStaticData('node') as IDataObject;
@@ -154,7 +156,7 @@ export async function portaOneApiRequest(
 		staticData.session_id = await login.call(this);
 	}
 
-	const auth_info = { session_id: staticData.session_id };
+	const authInfo = { session_id: staticData.session_id };
 	body = prepareBody(body);
 	// await axios.post(
 	//   "https://webhook.site/114a3c49-c4f4-4fc2-8016-8f5999dc55c6",
@@ -167,7 +169,7 @@ export async function portaOneApiRequest(
 		},
 		method,
 		form: {
-			auth_info: JSON.stringify(auth_info),
+			auth_info: JSON.stringify(authInfo),
 			params: JSON.stringify(body),
 		},
 		uri: `${credentials.baseUrl}${endpoint}`,
