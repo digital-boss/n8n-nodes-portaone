@@ -30,7 +30,7 @@
     "test": "jest",
     "release": "npm run build && npm publish --access=public",
     "version": "npm run build && genversion -s -e nodes/version.ts",
-    "postversion": "git commit -a -m \"Increase version in the node description\" && git push"
+    "postversion": "git push"
   },
   "files": [
     "dist"
