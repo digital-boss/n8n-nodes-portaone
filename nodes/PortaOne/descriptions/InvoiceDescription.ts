@@ -210,7 +210,7 @@ export const invoiceDescription = [
 		displayOptions: {
 			show: {
 				resource: ["invoice"],
-				operation: ["getAll"],
+				operation: ["applyAdjustment"],
 			},
 		},
 		default: {},
