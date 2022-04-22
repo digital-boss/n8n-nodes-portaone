@@ -1,6 +1,6 @@
 {
   "name": "@digital-boss/n8n-nodes-portaone",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "Iñaki Breinbauer",
   "license": "GPL-3.0",
   "description": "PortaOne support for n8n",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/quansenB/n8n-nodes-portaone.git"
+    "url": "git+https://github.com/digital-boss/n8n-nodes-portaone.git"
   },
   "main": "index.js",
   "scripts": {
