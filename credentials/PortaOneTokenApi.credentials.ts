@@ -1,8 +1,8 @@
 import { ICredentialType, INodeProperties } from 'n8n-workflow';
 
-export class PortaOneBasicApi implements ICredentialType {
-	name = 'portaOneBasicApi';
-	displayName = 'PortaOne Basic API';
+export class PortaOneTokenApi implements ICredentialType {
+	name = 'portaOneTokenApi';
+	displayName = 'PortaOne Token API';
 	documentationUrl = 'portaone';
 	properties: INodeProperties[] = [
 		{
@@ -18,8 +18,8 @@ export class PortaOneBasicApi implements ICredentialType {
 			default: '',
 		},
 		{
-			displayName: 'Password',
-			name: 'password',
+			displayName: 'Token',
+			name: 'token',
 			type: 'string',
 			typeOptions: {
 				password: true,

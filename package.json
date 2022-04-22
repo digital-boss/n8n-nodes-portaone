@@ -1,6 +1,10 @@
 {
   "name": "@digital-boss/n8n-nodes-portaone",
+<<<<<<< HEAD
   "version": "0.5.0",
+=======
+  "version": "0.4.4",
+>>>>>>> fcc6ec48588bdc34c2dc612e4ed81693ed99f1d4
   "author": "Iñaki Breinbauer",
   "license": "GPL-3.0",
   "description": "PortaOne support for n8n",
@@ -22,11 +26,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run watch",
-    "build": "tsc && gulp",
-    "tslint": "tslint -p tsconfig.json -c tslint.json",
+    "build": "tsc && gulp && genversion -s -e nodes/version.ts && git add .",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "lintfix": "tslint --fix -p tsconfig.json -c tslint.json",
+    "nodelinter": "nodelinter",
     "watch": "tsc --watch",
     "test": "jest",
-    "release": "npm run build && npm publish --access=public"
+    "release": "npm run build && npm publish --access=public",
+    "version": "npm run build && genversion -s -e nodes/version.ts",
+    "postversion": "git push"
   },
   "files": [
     "dist"
@@ -41,11 +49,12 @@
     ]
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.2",
-    "@types/express": "^4.17.13",
     "@types/request": "^2.48.7",
     "@types/request-promise-native": "^1.0.18",
+    "genversion": "^3.1.1",
     "gulp": "^4.0.2",
     "jest": "^27.1.0",
     "n8n-workflow": "^0.65.0",
