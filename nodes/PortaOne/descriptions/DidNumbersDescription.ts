@@ -37,12 +37,17 @@ export const didNumbersDescription = [
       {
         name: "Get All",
         value: "getAll",
-        description: "Get data of all xdrs",
+        description: "Get data of all did numbers",
       },
       {
         name: "Assign to customer",
         value: "assignToCustomer",
-        description: "Get data of all xdrs",
+        description: "Assign DID number to customer",
+      },
+      {
+        name: "Assign to account",
+        value: "assignToAccount",
+        description: "Assign DID number to account",
       },
     ],
     default: "getAll",
@@ -186,6 +191,37 @@ export const didNumbersDescription = [
     displayOptions: {
       show: {
         operation: ["assignToCustomer"],
+        resource: ["didNumbers"],
+      },
+    },
+    description: "The DID Number ID.",
+  },
+  // ----------------------------------
+  //         DID Numbers - AssignToAccount
+  // ----------------------------------
+  {
+    displayName: "Master Account ID",
+    name: "i_master_account",
+    type: "number",
+    required: true,
+    default: 0,
+    displayOptions: {
+      show: {
+        operation: ["assignToAccount"],
+        resource: ["didNumbers"],
+      },
+    },
+    description: "The unique ID of the account this DID number is assigned to.",
+  },
+  {
+    displayName: "DID number ID",
+    name: "i_did_number",
+    type: "number",
+    required: true,
+    default: 0,
+    displayOptions: {
+      show: {
+        operation: ["assignToAccount"],
         resource: ["didNumbers"],
       },
     },

@@ -174,9 +174,8 @@ export async function portaOneApiRequest(
   };
 
   try {
-    let responseData = await this.helpers.request!(options);
+    const responseData = await this.helpers.request!(options);
     // const responseData = JSON.stringify({ test: "sent" });
-    // await axios.post("https://webhook.site/114a3c49-c4f4-4fc2-8016-8f5999dc55c6", {res: responseData});
     try {
       return JSON.parse(responseData);
     } catch (err) {
