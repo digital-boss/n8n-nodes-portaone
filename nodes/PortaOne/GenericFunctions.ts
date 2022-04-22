@@ -131,68 +131,6 @@ export async function portaOneApiRequest(
 	resetSessionId = false,
 	// tslint:disable-next-line:no-any
 ): Promise<any> {
-<<<<<<< HEAD
-  const method = "POST";
-  const staticData = this.getWorkflowStaticData("node") as IDataObject;
-  const authMethod = this.getNodeParameter("authentication", 0) as string;
-
-  let credentials;
-  if (authMethod === "tokenAuth") {
-    credentials = await this.getCredentials("portaOneTokenApi");
-  } else {
-    credentials = await this.getCredentials("portaOneBasicAuth");
-  }
-
-  if (credentials === undefined) {
-    if (staticData.session_id) {
-      delete staticData.session_id;
-    }
-    throw new NodeOperationError(
-      this.getNode(),
-      "No credentials got returned!"
-    );
-  }
-
-  if (!staticData.session_id || resetSessionId) {
-    staticData.session_id = await login.call(this);
-  }
-
-  const auth_info = { session_id: staticData.session_id };
-  body = prepareBody(body);
-  // await axios.post(
-  //   "https://webhook.site/114a3c49-c4f4-4fc2-8016-8f5999dc55c6",
-  //   body
-  // );
-
-  const options: OptionsWithUri = {
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    method,
-    form: {
-      auth_info: JSON.stringify(auth_info),
-      params: JSON.stringify(body),
-    },
-    uri: `${credentials.baseUrl}${endpoint}`,
-  };
-
-  try {
-    const responseData = await this.helpers.request!(options);
-    // const responseData = JSON.stringify({ test: "sent" });
-    try {
-      return JSON.parse(responseData);
-    } catch (err) {
-      return responseData;
-    }
-    // return JSON.parse(responseData);
-  } catch (error) {
-    // Assumes one time, that the request failed because of an exired session ID
-    if (!resetSessionId) {
-      portaOneApiRequest.call(this, endpoint, body, true);
-    }
-    throw new NodeApiError(this.getNode(), error as JsonObject);
-  }
-=======
 	const method = 'POST';
 	const staticData = this.getWorkflowStaticData('node') as IDataObject;
 	const authMethod = this.getNodeParameter('authentication', 0) as string;
@@ -220,11 +158,6 @@ export async function portaOneApiRequest(
 
 	const authInfo = { session_id: staticData.session_id };
 	body = prepareBody(body);
-	// await axios.post(
-	//   "https://webhook.site/114a3c49-c4f4-4fc2-8016-8f5999dc55c6",
-	//   body
-	// );
-
 	const options: OptionsWithUri = {
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
@@ -239,14 +172,11 @@ export async function portaOneApiRequest(
 
 	try {
 		const responseData = await this.helpers.request!(options);
-		// const responseData = JSON.stringify({ test: "sent" });
-		// await axios.post("https://webhook.site/114a3c49-c4f4-4fc2-8016-8f5999dc55c6", {res: responseData});
 		try {
 			return JSON.parse(responseData);
 		} catch (err) {
 			return responseData;
 		}
-		// return JSON.parse(responseData);
 	} catch (error) {
 		// Assumes one time, that the request failed because of an exired session ID
 		if (!resetSessionId) {
@@ -254,5 +184,4 @@ export async function portaOneApiRequest(
 		}
 		throw new NodeApiError(this.getNode(), error as JsonObject);
 	}
->>>>>>> fcc6ec48588bdc34c2dc612e4ed81693ed99f1d4
 }
