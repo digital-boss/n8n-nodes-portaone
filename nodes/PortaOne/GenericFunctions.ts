@@ -9,8 +9,6 @@ import {
 
 import { OptionsWithUri } from 'request';
 
-const axios = require('axios');
-
 export interface IProduct {
 	fields: {
 		item?: object[];

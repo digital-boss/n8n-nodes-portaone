@@ -14,26 +14,6 @@ export const billingSessionDescription = [
       },
     },
     options: [
-      //   {
-      //     name: "Create",
-      //     value: "create",
-      //     description: "Create an invoice",
-      //   },
-      //   {
-      //     name: "Update",
-      //     value: "update",
-      //     description: "Update an invoice",
-      //   },
-      //   {
-      //     name: "Delete",
-      //     value: "delete",
-      //     description: "Delete an invoice",
-      //   },
-      // {
-      //   name: "Get",
-      //   value: "get",
-      //   description: "Get data of an invoice",
-      // },
       {
         name: "Get All Active Sessions",
         value: "getAllActiveSessions",
