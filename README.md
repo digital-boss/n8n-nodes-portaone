@@ -1,54 +1,57 @@
-# If you have n8n installed: Install custom nodes module
+# n8n-nodes-portaone
 
-Install it to the n8n root folder. This is the node_modules folder on the same level of n8n and n8n-core. This differs when you used the -g flag on n8n initial installation. From there do:
+![n8n.io - Workflow Automation](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-logo.png)
 
+## Try it out with docker
+
+The recommended way is using our docker image [Digital Boss' N8N custom nodes docker image](https://hub.docker.com/r/digitalboss/n8n-custom-nodes)
+
+## Another way to try it out
+
+[N8N documentation on custom nodes](https://docs.n8n.io/nodes/creating-nodes/create-n8n-nodes-module.html)
+
+Clone the n8n-nodes-portaone repository and execute:
 ```
-npm install @digital-boss/n8n-node-portaone
+# Install dependencies
+npm install
+
+# Build the code
+npm run build
+
+# "Publish" the package locally
+npm link
 ```
 
-# Fresh install n8n
-
-Navigate to desired folder, create a package json and install n8n like so:
-
+Create an N8N installation and add the n8n-nodes-portaone to it:
 ```
-cd /var/www/vhosts/
-
-mkdir my-n8n && cd my-n8n
-
-npm init --yes
-
+# Create an N8N installation
+cd ..
+mkdir n8n_install
+cd n8n_install
+npm init
+npm install
 npm install n8n
 
-npm install @digital-boss/n8n-node-portaone
-```
+# "Install" the locally published module
+npm link @digital-boss/n8n-nodes-portaone
 
 # Start n8n
-
-Directly:
-
-```
-n8n
+npx n8n
 ```
 
-Plesk or C-Panel:
-
-```
-node /var/www/vhosts/n8n/bin/n8n
-```
-
-# Latest functionality
+## Latest functionality
 
 PortaOne node includes Endpoints for Contacts, Custom Objects and Custom Object Data
 
-# Contribution
+## Contribution
 
 To make this node even better, please let us know, [how you use it](mailto:info@digital-north-consulting.com). Commits are always welcome.
 
-# Issues
+## Issues
 
-If you have any issues, please [let us know on GitHub](https://github.com/quansenB/n8n-nodes-portaone/issues).
+If you have any issues, please [let us know on GitHub](https://github.com/digital-boss/n8n-nodes-portaone/issues).
 
-# About
+## About
 
 Special thanks to [N8n nodemation](https://n8n.io) workflow automation by Jan Oberhauser.
 
