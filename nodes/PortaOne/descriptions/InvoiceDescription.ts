@@ -1,91 +1,91 @@
-import { INodeProperties } from "n8n-workflow";
+import { INodeProperties } from 'n8n-workflow';
 
 export const invoiceDescription = [
 	// ----------------------------------
 	//         Invoices - Operations
 	// ----------------------------------
 	{
-		displayName: "Operation",
-		name: "operation",
-		type: "options",
+		displayName: 'Operation',
+		name: 'operation',
+		type: 'options',
 		displayOptions: {
 			show: {
-				resource: ["invoice"],
+				resource: ['invoice'],
 			},
 		},
 		options: [
 			{
-				name: "Get",
-				value: "get",
-				description: "Get data of an invoice",
+				name: 'Get',
+				value: 'get',
+				description: 'Get data of an invoice',
 			},
 			{
-				name: "Get All",
-				value: "getAll",
-				description: "Get data of all invoices",
+				name: 'Get All',
+				value: 'getAll',
+				description: 'Get data of all invoices',
 			},
 			{
-				name: "Apply Adjustment",
-				value: "applyAdjustment",
-				description: "Apply an adjustment to an invoice",
+				name: 'Apply Adjustment',
+				value: 'applyAdjustment',
+				description: 'Apply an adjustment to an invoice',
 			},
 		],
-		default: "get",
-		description: "The operation to perform.",
+		default: 'get',
+		description: 'The operation to perform.',
 	},
 	// ----------------------------------
 	//         Invoice - Get
 	// ----------------------------------
 	{
-		displayName: "Invoice ID",
-		name: "i_invoice",
-		type: "number",
-		default: "",
+		displayName: 'Invoice ID',
+		name: 'i_invoice',
+		type: 'number',
+		default: '',
 		displayOptions: {
 			show: {
-				resource: ["invoice"],
-				operation: ["get"],
+				resource: ['invoice'],
+				operation: ['get'],
 			},
 		},
-		description: "Filters invoices by invoice ID.",
+		description: 'Filters invoices by invoice ID.',
 	},
 	{
-		displayName: "Additional Fields",
-		name: "additionalFields",
-		type: "collection",
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
 		displayOptions: {
 			show: {
-				resource: ["invoice"],
-				operation: ["get"],
+				resource: ['invoice'],
+				operation: ['get'],
 			},
 		},
 		default: {},
-		description: "Additional optional fields of the invoice.",
-		placeholder: "Add Field",
+		description: 'Additional optional fields of the invoice.',
+		placeholder: 'Add Field',
 		options: [
 			{
-				displayName: "Customer ID",
-				name: "i_customer",
-				type: "number",
-				default: "",
+				displayName: 'Customer ID',
+				name: 'i_customer',
+				type: 'number',
+				default: '',
 				description:
-					"Filters invoices by the ID of the customer for whom the invoices were generated.",
+					'Filters invoices by the ID of the customer for whom the invoices were generated.',
 			},
 			{
-				displayName: "Invoice Number",
-				name: "invoice_number",
-				type: "number",
-				default: "",
+				displayName: 'Invoice Number',
+				name: 'invoice_number',
+				type: 'number',
+				default: '',
 				description:
-					"Filters invoices by the invoice number. Note: the invoice number can be unique in the scope of the customer, reseller, environment; uniqueness depends on the invoice generation settings for the customer/reseller/environment.",
+					'Filters invoices by the invoice number. Note: the invoice number can be unique in the scope of the customer, reseller, environment; uniqueness depends on the invoice generation settings for the customer/reseller/environment.',
 			},
 			{
-				displayName: "Get PDF",
-				name: "get_pdf",
-				type: "boolean",
+				displayName: 'Get PDF',
+				name: 'get_pdf',
+				type: 'boolean',
 				default: false,
 				description:
-					"The flag indicates whether to include the PDF file in the response. Note: if the PDF file does not exist, only the invoice information will be included in the response.",
+					'The flag indicates whether to include the PDF file in the response. Note: if the PDF file does not exist, only the invoice information will be included in the response.',
 			},
 		],
 	},
@@ -94,64 +94,64 @@ export const invoiceDescription = [
 	//         Invoice - GetAll
 	// --------------------------
 	{
-		displayName: "Additional Fields",
-		name: "additionalFields",
-		type: "collection",
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
 		displayOptions: {
 			show: {
-				resource: ["invoice"],
-				operation: ["getAll"],
+				resource: ['invoice'],
+				operation: ['getAll'],
 			},
 		},
 		default: {},
-		description: "Additional optional fields of the invoice.",
-		placeholder: "Add Field",
+		description: 'Additional optional fields of the invoice.',
+		placeholder: 'Add Field',
 		options: [
 			{
-				displayName: "Customer ID",
-				name: "i_customer",
-				type: "number",
+				displayName: 'Customer ID',
+				name: 'i_customer',
+				type: 'number',
 				default: 0,
-				description: "The unique ID of the customer the invoice belongs to",
+				description: 'The unique ID of the customer the invoice belongs to',
 			},
 			{
-				displayName: "Parent ID",
-				name: "i_parent",
-				type: "number",
-				default: 0,
-				description:
-					"The unique ID of the reseller (to get invoices for all subcustomers of this reseller)",
-			},
-			{
-				displayName: "Invoice number",
-				name: "invoice_number",
-				type: "number",
+				displayName: 'Parent ID',
+				name: 'i_parent',
+				type: 'number',
 				default: 0,
 				description:
-					"Refers to Invoice Number - unique identifier of the invoice",
+					'The unique ID of the reseller (to get invoices for all subcustomers of this reseller)',
 			},
 			{
-				displayName: "Issued after",
-				name: "issued_after",
-				type: "dateTime",
-				default: "",
+				displayName: 'Invoice number',
+				name: 'invoice_number',
+				type: 'number',
+				default: 0,
 				description:
-					"Fetch invoices with the 'issue_date' later than this date",
+					'Refers to Invoice Number - unique identifier of the invoice',
 			},
 			{
-				displayName: "Issued before",
-				name: "issued_before",
-				type: "dateTime",
-				default: "",
+				displayName: 'Issued after',
+				name: 'issued_after',
+				type: 'dateTime',
+				default: '',
 				description:
-					"Fetch invoices with the 'issue_date' earlier than this date",
+					'Fetch invoices with the \'issue_date\' later than this date',
 			},
 			{
-				displayName: "Limit",
-				name: "limit",
-				type: "number",
+				displayName: 'Issued before',
+				name: 'issued_before',
+				type: 'dateTime',
+				default: '',
+				description:
+					'Fetch invoices with the \'issue_date\' earlier than this date',
+			},
+			{
+				displayName: 'Limit',
+				name: 'limit',
+				type: 'number',
 				default: 100,
-				description: "Limit of invoices (maximum quantity of invoices)",
+				description: 'Limit of invoices (maximum quantity of invoices)',
 			},
 		],
 	},
@@ -159,23 +159,23 @@ export const invoiceDescription = [
 	//         Invoice - Apply Adjustment
 	// --------------------------
 	{
-		displayName: "Invoice ID",
-		name: "i_invoice",
-		type: "number",
+		displayName: 'Invoice ID',
+		name: 'i_invoice',
+		type: 'number',
 		required: true,
-		default: "",
+		default: '',
 		displayOptions: {
 			show: {
-				resource: ["invoice"],
-				operation: ["applyAdjustment"],
+				resource: ['invoice'],
+				operation: ['applyAdjustment'],
 			},
 		},
-		description: "Invoice by invoice ID top apply adjustment to",
+		description: 'Invoice by invoice ID top apply adjustment to',
 	},
 	{
-		displayName: "Amount",
-		name: "amount",
-		type: "number",
+		displayName: 'Amount',
+		name: 'amount',
+		type: 'number',
 		required: true,
 		default: 0,
 		typeOptions: {
@@ -183,56 +183,56 @@ export const invoiceDescription = [
 		},
 		displayOptions: {
 			show: {
-				resource: ["invoice"],
-				operation: ["applyAdjustment"],
+				resource: ['invoice'],
+				operation: ['applyAdjustment'],
 			},
 		},
-		description: "An amount of adjustment",
+		description: 'An amount of adjustment',
 	},
 	{
-		displayName: "Refund to Credit Card?",
-		name: "refund_to_cc",
-		type: "boolean",
+		displayName: 'Refund to Credit Card?',
+		name: 'refund_to_cc',
+		type: 'boolean',
 		default: false,
 		displayOptions: {
 			show: {
-				resource: ["invoice"],
-				operation: ["applyAdjustment"],
+				resource: ['invoice'],
+				operation: ['applyAdjustment'],
 			},
 		},
 		description:
-			"For fully paid invoices only. If set to 1, the adjustment amount will be refunded to the credit card.",
+			'For fully paid invoices only. If set to 1, the adjustment amount will be refunded to the credit card.',
 	},
 	{
-		displayName: "Additional Fields",
-		name: "additionalFields",
-		type: "collection",
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
 		displayOptions: {
 			show: {
-				resource: ["invoice"],
-				operation: ["applyAdjustment"],
+				resource: ['invoice'],
+				operation: ['applyAdjustment'],
 			},
 		},
 		default: {},
-		description: "Additional optional fields of the invoice.",
-		placeholder: "Add Field",
+		description: 'Additional optional fields of the invoice.',
+		placeholder: 'Add Field',
 		options: [
 			{
-				displayName: "Visible Comment",
-				name: "visible_comment",
-				type: "string",
-				default: "",
+				displayName: 'Visible Comment',
+				name: 'visible_comment',
+				type: 'string',
+				default: '',
 				description:
-					"A comment on this transaction visible to the customer in the xDR browser.",
+					'A comment on this transaction visible to the customer in the xDR browser.',
 			},
 			{
-				displayName: "Internal Comment",
-				name: "internal_comment",
-				type: "string",
-				default: "",
+				displayName: 'Internal Comment',
+				name: 'internal_comment',
+				type: 'string',
+				default: '',
 				description:
-					"An internal comment on this transaction; not visible in the xDR browser, and accessible only from the database directly.",
+					'An internal comment on this transaction; not visible in the xDR browser, and accessible only from the database directly.',
 			},
-		]
+		],
 	},
 ] as INodeProperties[];
