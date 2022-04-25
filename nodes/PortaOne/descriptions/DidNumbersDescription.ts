@@ -140,7 +140,7 @@ export const didNumbersDescription = [
 				],
 				default: 'A',
 				description:
-					"Filter DID number list by usage. Possible values: I - idle (assigned to neither an account nor a customer); U - used (assigned to an account); F - not used (idle and/or assigned to a customer, but not to an account); A - all (the default value); Z - frozen (displayed on the administrator's DID inventory page only).",
+					'Filter DID number list by usage. Possible values: I - idle (assigned to neither an account nor a customer); U - used (assigned to an account); F - not used (idle and/or assigned to a customer, but not to an account); A - all (the default value); Z - frozen (displayed on the administrator\'s DID inventory page only).',
 			},
 		],
 	},

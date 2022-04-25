@@ -160,7 +160,7 @@ export const billingSessionDescription = [
 				],
 				default: 'on-net_only',
 				description:
-					"Filter the session list by the on-net status. Possible values: 'on-net_only' - Include only on-net sessions; 'exclude' - Do not include on-net sessions; 'exclude_incoming' - Do not include incoming on-net sessions",
+					'Filter the session list by the on-net status. Possible values: \'on-net_only\' - Include only on-net sessions; \'exclude\' - Do not include on-net sessions; \'exclude_incoming\' - Do not include incoming on-net sessions',
 			},
 			{
 				displayName: 'Parent session ID',

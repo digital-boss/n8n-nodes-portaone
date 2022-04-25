@@ -144,7 +144,7 @@ export class PortaOne implements INodeType {
 
 		// tslint:disable-next-line:no-any
 		let body: any = {};
-		let qs: IDataObject = {};
+		const qs: IDataObject = {};
 		let responseData;
 
 		for (let i = 0; i < items.length; i++) {
@@ -346,6 +346,7 @@ export class PortaOne implements INodeType {
 			}
 			try {
 				responseData = await portaOneApiRequest.call(this, endpoint, body);
+				// tslint:disable-next-line:no-any
 			} catch (error: any) {
 				if (this.continueOnFail()) {
 					returnData.push({ error: error.message });

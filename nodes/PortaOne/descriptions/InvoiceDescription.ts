@@ -134,14 +134,14 @@ export const invoiceDescription = [
 				name: 'issued_after',
 				type: 'string',
 				default: '',
-				description: "Fetch invoices with the 'issue_date' later than this date. Use Format YYYY-MM-DD",
+				description: 'Fetch invoices with the \'issue_date\' later than this date. Use Format YYYY-MM-DD',
 			},
 			{
 				displayName: 'Issued before',
 				name: 'issued_before',
 				type: 'string',
 				default: '',
-				description: "Fetch invoices with the 'issue_date' earlier than this date. Use Format YYYY-MM-DD",
+				description: 'Fetch invoices with the \'issue_date\' earlier than this date. Use Format YYYY-MM-DD',
 			},
 			{
 				displayName: 'Limit',
@@ -219,7 +219,12 @@ export const invoiceDescription = [
 				name: 'visible_comment',
 				type: 'string',
 				default: '',
+<<<<<<< HEAD
 				description: 'A comment on this transaction visible to the customer in the xDR browser.',
+=======
+				description:
+					'A comment on this transaction visible to the customer in the xDR browser.',
+>>>>>>> 5f0acd34066b9e58b618e556ed560a7dba8ceda4
 			},
 			{
 				displayName: 'Internal Comment',
