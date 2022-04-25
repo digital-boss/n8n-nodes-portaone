@@ -1,11 +1,6 @@
 import { IExecuteFunctions, IHookFunctions } from 'n8n-core';
 
-import {
-	IDataObject,
-	JsonObject,
-	NodeApiError,
-	NodeOperationError,
-} from 'n8n-workflow';
+import { IDataObject, JsonObject, NodeApiError, NodeOperationError } from 'n8n-workflow';
 
 import { OptionsWithUri } from 'request';
 
@@ -29,13 +24,9 @@ function prepareBody(body: IDataObject): IDataObject {
 		}
 		if (
 			typeof body[key] === 'string' &&
-			// @ts-ignore
-			new Date(body[key]).toString() !== 'Invalid Date'
+			/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d+)?Z?/.test(body[key] as string)
 		) {
-			body[key] = (body[key] as string)
-				.replace('T', ' ')
-				.replace('Z', '')
-				.replace('.000', '');
+			body[key] = (body[key] as string).replace('T', ' ').replace('Z', '').replace('.000', '');
 		}
 		if (typeof body[key] === 'object' && !!(body[key] as IDataObject).fields) {
 			body[key] = (body[key] as IDataObject).fields;
@@ -74,10 +65,7 @@ export async function login(this: IHookFunctions | IExecuteFunctions) {
 	}
 
 	if (credentials === undefined) {
-		throw new NodeOperationError(
-			this.getNode(),
-			'No credentials got returned!',
-		);
+		throw new NodeOperationError(this.getNode(), 'No credentials got returned!');
 	}
 
 	let params = {};
@@ -144,10 +132,7 @@ export async function portaOneApiRequest(
 		if (staticData.session_id) {
 			delete staticData.session_id;
 		}
-		throw new NodeOperationError(
-			this.getNode(),
-			'No credentials got returned!',
-		);
+		throw new NodeOperationError(this.getNode(), 'No credentials got returned!');
 	}
 
 	if (!staticData.session_id || resetSessionId) {
