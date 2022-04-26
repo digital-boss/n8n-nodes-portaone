@@ -171,8 +171,8 @@ export const customerExtensionDescription = [
 			{
 				displayName: 'Account ID',
 				name: 'account_id',
-				type: 'number',
-				default: 0,
+				type: 'string',
+				default: "",
 				description: 'Search pattern for account IDs',
 			},
 			{
