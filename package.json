@@ -22,14 +22,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run watch",
-    "build": "tsc && gulp && genversion -s -e nodes/version.ts && git add .",
+    "build": "genversion -s -e nodes/version.ts && git add . && tsc && gulp",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "lintfix": "tslint --fix -p tsconfig.json -c tslint.json",
     "nodelinter": "nodelinter",
     "watch": "tsc --watch",
     "test": "jest",
     "release": "npm run build && npm publish --access=public",
-    "version": "npm run build && genversion -s -e nodes/version.ts",
+    "version": "npm run build",
     "postversion": "git push"
   },
   "files": [

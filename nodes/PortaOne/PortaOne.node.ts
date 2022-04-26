@@ -298,6 +298,7 @@ export class PortaOne implements INodeType {
 				// ----------------------------------
 				if (operation === 'getAll') {
 					endpoint = '/rest/Customer/get_customer_xdrs';
+					body = this.getNodeParameter('additionalFields', i) as IDataObject;
 					body.i_customer = this.getNodeParameter('i_customer', i) as string;
 					body.to_date = this.getNodeParameter('to_date', i) as string;
 					body.from_date = this.getNodeParameter('from_date', i) as string;

@@ -35,7 +35,7 @@ export const customerDescription = [
 				description: 'Get data of all customers',
 			},
 		],
-		default: 'create',
+		default: 'get',
 		description: 'The operation to perform.',
 	},
 	// ----------------------------------
