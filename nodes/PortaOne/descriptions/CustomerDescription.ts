@@ -823,7 +823,7 @@ export const customerDescription = [
 					{ name: 'Short', value: 'S' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Y',
+				default: 'F',
 				description:
 					'Defines what kind of xDR statistics should be delivered to the customer by email. Possible values: F - send full statistics to customer; S - send short statistics; N - do not send statistics; null - the settings defined in the customer class are applied.',
 			},
@@ -1405,7 +1405,7 @@ export const customerDescription = [
 					{ name: 'Short', value: 'S' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Y',
+				default: 'F',
 				description:
 					'Defines what kind of xDR statistics should be delivered to the customer by email. Possible values: F - send full statistics to customer; S - send short statistics; N - do not send statistics; null - the settings defined in the customer class are applied.',
 			},
