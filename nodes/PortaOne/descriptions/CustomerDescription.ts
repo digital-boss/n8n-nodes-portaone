@@ -375,7 +375,7 @@ export const customerDescription = [
 					{ name: 'Yes', value: 'Y' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Yes',
+				default: 'Y',
 				description:
 					'Indicates whether balance transfer is enabled for a customer. Subscriber-to-subscriber transfers allow end users to transfer prepaid amounts of money among accounts. Note: only debit and/or credit accounts with individual credit limits can transfer and receive funds. Possible values: Y - is enabled; N - is disabled.',
 			},
@@ -430,7 +430,7 @@ export const customerDescription = [
 					{ name: 'Yes', value: 'Y' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Yes',
+				default: 'Y',
 				description:
 					"Indicates whether a customer's calls should be blocked. Used to block the customer by the administrator; no call services are provided until the administrator removes the block. Blocked customers have no access to self-care pages. Blocked customers are not subject to maintenance charges but subscription fees still apply. Possible values: Y - block account's calls; N - do not block account's calls.",
 			},
@@ -442,7 +442,7 @@ export const customerDescription = [
 					{ name: 'Yes', value: 'Y' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Yes',
+				default: 'Y',
 				description:
 					"The flag indicates whether to automatically charge the customer's credit card to pay an invoice. Note: if the value is empty, the value from the customer class should be used. This is an ineffective alternative for customers without a payment method configured. Possible values: Y - charge credit card when invoice is generated; N - don't charge credit card when invoice is generated; empty - use customer class value for this option (inherit value from customer class).",
 			},
@@ -469,7 +469,7 @@ export const customerDescription = [
 							{ name: 'Yes', value: 'Y' },
 							{ name: 'No', value: 'N' },
 						],
-						default: 'Yes',
+						default: 'Y',
 						description:
 							"Indicates whether the customer's billing period is scheduled to be closed.",
 					},
@@ -483,7 +483,7 @@ export const customerDescription = [
 					{ name: 'Yes', value: 'Y' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Yes',
+				default: 'Y',
 				description:
 					"Indicates whether callshop features on customer's self-care interface are enabled. Possible values: Y - callshop features are enabled; N - callshop features are disabled.",
 			},
@@ -814,6 +814,31 @@ export const customerDescription = [
 				description:
 					"Used to make notes about the customer. When making changes in the customer record, the administrator can use the Notepad tab to provide a comment detailing the reason for these changes (for example, 'product changed, credited $50').",
 			},
+			{
+				displayName: 'Send statistics?',
+				name: 'send_statistics',
+				type: 'options',
+				options: [
+					{ name: 'Full', value: 'F' },
+					{ name: 'Short', value: 'S' },
+					{ name: 'No', value: 'N' },
+				],
+				default: 'Y',
+				description:
+					'Defines what kind of xDR statistics should be delivered to the customer by email. Possible values: F - send full statistics to customer; S - send short statistics; N - do not send statistics; null - the settings defined in the customer class are applied.',
+			},
+			{
+				displayName: 'Send invoices?',
+				name: 'send_invoices',
+				type: 'options',
+				options: [
+					{ name: 'Yes', value: 'Y' },
+					{ name: 'No', value: 'N' },
+				],
+				default: 'Y',
+				description:
+					'Defines whether a regular invoice should be automatically sent to the customer as soon as it is created. Possible values: Y - send invoice; N - do not send invoice. If null, the settings defined in the customer class are applied.',
+			},
 		],
 	},
 	// --------------------------
@@ -918,7 +943,7 @@ export const customerDescription = [
 					{ name: 'Yes', value: 'Y' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Yes',
+				default: 'Y',
 				description:
 					'Indicates whether balance transfer is enabled for a customer. Subscriber-to-subscriber transfers allow end users to transfer prepaid amounts of money among accounts. Note: only debit and/or credit accounts with individual credit limits can transfer and receive funds. Possible values: Y - is enabled; N - is disabled.',
 			},
@@ -973,7 +998,7 @@ export const customerDescription = [
 					{ name: 'Yes', value: 'Y' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Yes',
+				default: 'Y',
 				description:
 					"Indicates whether a customer's calls should be blocked. Used to block the customer by the administrator; no call services are provided until the administrator removes the block. Blocked customers have no access to self-care pages. Blocked customers are not subject to maintenance charges but subscription fees still apply. Possible values: Y - block account's calls; N - do not block account's calls.",
 			},
@@ -985,7 +1010,7 @@ export const customerDescription = [
 					{ name: 'Yes', value: 'Y' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Yes',
+				default: 'Y',
 				description:
 					"The flag indicates whether to automatically charge the customer's credit card to pay an invoice. Note: if the value is empty, the value from the customer class should be used. This is an ineffective alternative for customers without a payment method configured. Possible values: Y - charge credit card when invoice is generated; N - don't charge credit card when invoice is generated; empty - use customer class value for this option (inherit value from customer class).",
 			},
@@ -1012,7 +1037,7 @@ export const customerDescription = [
 							{ name: 'Yes', value: 'Y' },
 							{ name: 'No', value: 'N' },
 						],
-						default: 'Yes',
+						default: 'Y',
 						description:
 							"Indicates whether the customer's billing period is scheduled to be closed.",
 					},
@@ -1026,7 +1051,7 @@ export const customerDescription = [
 					{ name: 'Yes', value: 'Y' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'Yes',
+				default: 'Y',
 				description:
 					"Indicates whether callshop features on customer's self-care interface are enabled. Possible values: Y - callshop features are enabled; N - callshop features are disabled.",
 			},
@@ -1308,7 +1333,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's tariff. Used to specify a tariff to charge the reseller for calls made by their subcustomers. A tariff is a complete set of rates for a specific account, customer, or vendor. Note: applies to resellers only.",
+				"The unique ID of the customer's tariff. Used to specify a tariff to charge the reseller for calls made by their subcustomers. A tariff is a complete set of rates for a specific account, customer, or vendor. Note: applies to resellers only.",
 			},
 			{
 				displayName: 'Incoming Tariff ID',
@@ -1323,7 +1348,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's regular invoice template. An invoice template is a special HTML document that defines how your customers' .pdf invoices look. Possible values: null - the template defined in the customer class is used; 0 - invoices are not created; [otherwise] - the unique ID of the regular invoice template.",
+				"The unique ID of the customer's regular invoice template. An invoice template is a special HTML document that defines how your customers' .pdf invoices look. Possible values: null - the template defined in the customer class is used; 0 - invoices are not created; [otherwise] - the unique ID of the regular invoice template.",
 			},
 			{
 				displayName: 'Timezone ID',
@@ -1331,7 +1356,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's time zone. Used to set the time zone for which to display the date and time values on the customer self-care interface.",
+				"The unique ID of the customer's time zone. Used to set the time zone for which to display the date and time values on the customer self-care interface.",
 			},
 			{
 				displayName: 'Traffic profile ID',
@@ -1339,7 +1364,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					'The fraud traffic profile ID. Note: null value means the value is inherited from the customer class.',
+				'The fraud traffic profile ID. Note: null value means the value is inherited from the customer class.',
 			},
 			{
 				displayName: 'User interface time zone ID',
@@ -1347,7 +1372,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The ID of the customer's user interface time zone.  Note: to get the list of available time zones, use API method generic.get_time_zone_list; null value means the billing time will be used.",
+				"The ID of the customer's user interface time zone.  Note: to get the list of available time zones, use API method generic.get_time_zone_list; null value means the billing time will be used.",
 			},
 			{
 				displayName: 'Discount plan ID',
@@ -1369,7 +1394,32 @@ export const customerDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"Used to make notes about the customer. When making changes in the customer record, the administrator can use the Notepad tab to provide a comment detailing the reason for these changes (for example, 'product changed, credited $50').",
+				"Used to make notes about the customer. When making changes in the customer record, the administrator can use the Notepad tab to provide a comment detailing the reason for these changes (for example, 'product changed, credited $50').",
+			},
+			{
+				displayName: 'Send statistics?',
+				name: 'send_statistics',
+				type: 'options',
+				options: [
+					{ name: 'Full', value: 'F' },
+					{ name: 'Short', value: 'S' },
+					{ name: 'No', value: 'N' },
+				],
+				default: 'Y',
+				description:
+					'Defines what kind of xDR statistics should be delivered to the customer by email. Possible values: F - send full statistics to customer; S - send short statistics; N - do not send statistics; null - the settings defined in the customer class are applied.',
+			},
+			{
+				displayName: 'Send invoices?',
+				name: 'send_invoices',
+				type: 'options',
+				options: [
+					{ name: 'Yes', value: 'Y' },
+					{ name: 'No', value: 'N' },
+				],
+				default: 'Y',
+				description:
+					'Defines whether a regular invoice should be automatically sent to the customer as soon as it is created. Possible values: Y - send invoice; N - do not send invoice. If null, the settings defined in the customer class are applied.',
 			},
 		],
 	},

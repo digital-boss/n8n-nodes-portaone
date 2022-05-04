@@ -295,7 +295,7 @@ export const accountDescription = [
 					{ name: 'Yes', value: 'Y' },
 					{ name: 'No', value: 'N' },
 				],
-				default: 'No',
+				default: 'N',
 				description:
 					"The flag indicates whether the account's calls are enabled. Shows whether SIP auth is enabled for the alias. Possible values: N - SIP auth is enabled for the alias and calls are allowed; Y - SIP auth is disabled for the alias and calls are disabled.",
 			},
