@@ -2,7 +2,7 @@
   "name": "@digital-boss/n8n-nodes-portaone",
   "version": "0.7.3",
   "author": "Iñaki Breinbauer",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "description": "PortaOne support for n8n",
   "keywords": [
     "n8n",
