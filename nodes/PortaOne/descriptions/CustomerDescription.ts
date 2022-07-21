@@ -34,6 +34,16 @@ export const customerDescription = [
 				value: 'getAll',
 				description: 'Get data of all customers',
 			},
+			{
+				name: 'Get Custom Fields Values',
+				value: 'getCustomFieldsValues',
+				description: 'Get the list of customer\'s custom fields',
+			},
+			{
+				name: 'Update Custom Fields Values',
+				value: 'updateCustomFieldsValues',
+				description: 'Modify a customer\'s custom fields',
+			},
 		],
 		default: 'get',
 		description: 'The operation to perform.',
@@ -1423,4 +1433,102 @@ export const customerDescription = [
 			},
 		],
 	},
+
+	// ----------------------------------
+	//         Customer - Get Custom Fields Values
+	// ----------------------------------
+	{
+		displayName: 'Customer ID',
+		name: 'i_customer',
+		required: true,
+		type: 'number',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['getCustomFieldsValues'],
+			},
+		},
+		description: 'The unique ID of the customer record. Not mandatory when the method that requires this structure is executed from the retail customer realm.',
+	},
+
+	// ----------------------------------
+	//         Customer - Update Custom Fields Values
+	// ----------------------------------
+	{
+		displayName: 'Custom Fields Values',
+		name: 'custom_fields_values',
+		required: true,
+		type: 'fixedCollection',
+		typeOptions: {
+			multipleValues: true,
+		},
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['updateCustomFieldsValues'],
+			},
+		},
+		default: '',
+		description: 'The list of Custom Fields values for the given customer',
+		options: [
+			{
+				displayName: 'Field',
+				name: 'fields',
+				values: [
+					{
+						displayName: 'DB Value',
+						name: 'db_value',
+						type: 'string',
+						default: '',
+						description: 'Database value of the custom field',
+					},
+					{
+						displayName: 'Custom Field ID',
+						name: 'i_custom_field',
+						type: 'string',
+						default: '',
+						description: 'The unique ID of the custom field. Either the \'i_custom_field\' or the \'name\' is required for the \'update_custom_fields_values\' method.',
+					},
+					{
+						displayName: 'Custom Field Value ID',
+						name: 'i_custom_field_value',
+						type: 'string',
+						default: '',
+						description: 'The unique ID of the custom field value. The field is ignored in the \'update_custom_fields_values\' method request.',
+					},
+					{
+						displayName: 'Name',
+						name: 'name',
+						type: 'string',
+						default: '',
+						description: ' The unique ID of the custom field value. The field is ignored in the \'update_custom_fields_values\' method request.',
+					},
+				],
+			},
+		],
+	},
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['updateCustomFieldsValues'],
+			},
+		},
+		default: {},
+		placeholder: 'Add Field',
+		options: [
+			{
+				displayName: 'Customer ID',
+				name: 'i_customer',
+				type: 'number',
+				default: '',
+				description: 'The unique ID of the customer record. Not mandatory when the method that requires this structure is executed from the retail customer realm.',
+			},
+		],
+	},
+
 ] as INodeProperties[];

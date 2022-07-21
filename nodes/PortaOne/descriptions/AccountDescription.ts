@@ -34,6 +34,16 @@ export const accountDescription = [
 				value: 'addAlias',
 				description: 'Add an alias to an account',
 			},
+			{
+				name: 'Get Custom Fields Values',
+				value: 'getCustomFieldsValues',
+				description: 'Get the list of account\'s custom fields',
+			},
+			{
+				name: 'Update Custom Fields Values',
+				value: 'updateCustomFieldsValues',
+				description: 'Modify the account\'s custom fields',
+			},
 		],
 		default: 'get',
 		description: 'The operation to perform.',
@@ -317,4 +327,103 @@ export const accountDescription = [
 			},
 		],
 	},
+
+	// ----------------------------------
+	//         Accounts - Get Custom Fields Values
+	// ----------------------------------
+	{
+		displayName: 'Account ID',
+		name: 'i_account',
+		required: true,
+		type: 'number',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: ['account'],
+				operation: ['getCustomFieldsValues'],
+			},
+		},
+		description: 'The unique ID of the account record',
+	},
+
+	// ----------------------------------
+	//         Accounts - Update Custom Fields Values
+	// ----------------------------------
+	{
+		displayName: 'Custom Fields Values',
+		name: 'custom_fields_values',
+		required: true,
+		type: 'fixedCollection',
+		typeOptions: {
+			multipleValues: true,
+		},
+		displayOptions: {
+			show: {
+				resource: ['account'],
+				operation: ['updateCustomFieldsValues'],
+			},
+		},
+		default: '',
+		description: 'The list of Custom Fields values for the given account',
+		options: [
+			{
+				displayName: 'Field',
+				name: 'fields',
+				values: [
+					{
+						displayName: 'DB Value',
+						name: 'db_value',
+						type: 'string',
+						default: '',
+						description: 'Database value of the custom field',
+					},
+					{
+						displayName: 'Custom Field ID',
+						name: 'i_custom_field',
+						type: 'string',
+						default: '',
+						description: 'The unique ID of the custom field. Either the \'i_custom_field\' or the \'name\' is required for the \'update_custom_fields_values\' method.',
+					},
+					{
+						displayName: 'Custom Field Value ID',
+						name: 'i_custom_field_value',
+						type: 'string',
+						default: '',
+						description: 'The unique ID of the custom field value. The field is ignored in the \'update_custom_fields_values\' method request.',
+					},
+					{
+						displayName: 'Name',
+						name: 'name',
+						type: 'string',
+						default: '',
+						description: ' The unique ID of the custom field value. The field is ignored in the \'update_custom_fields_values\' method request.',
+					},
+				],
+			},
+		],
+	},
+
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		displayOptions: {
+			show: {
+				resource: ['account'],
+				operation: ['updateCustomFieldsValues'],
+			},
+		},
+		default: {},
+		placeholder: 'Add Field',
+		options: [
+			{
+				displayName: 'Account ID',
+				name: 'i_account',
+				type: 'number',
+				default: '',
+				description: 'The unique ID of the account record',
+			},
+		],
+	},
+
 ] as INodeProperties[];
