@@ -120,7 +120,7 @@ export const accountDescription = [
 				name: 'companyname',
 				type: 'string',
 				default: '',
-				description: "Customer's company name",
+				description: 'Customer\'s company name',
 			},
 			{
 				displayName: 'DID number',
@@ -128,7 +128,7 @@ export const accountDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The search pattern for the account's DID number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+					'The search pattern for the account\'s DID number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character',
 			},
 			{
 				displayName: 'Extension ID',
@@ -136,7 +136,7 @@ export const accountDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The search pattern for the account's extension number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+					'The search pattern for the account\'s extension number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character',
 			},
 			{
 				displayName: 'Extension name',
@@ -144,7 +144,7 @@ export const accountDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The search pattern for the account's extension name. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+					'The search pattern for the account\'s extension name. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character',
 			},
 			{
 				displayName: 'Get not closed accounts?',
@@ -152,7 +152,7 @@ export const accountDescription = [
 				type: 'boolean',
 				default: false,
 				description:
-					"Indicates whether to fetch only accounts with statuses different from 'closed'",
+					'Indicates whether to fetch only accounts with statuses different from \'closed\'',
 			},
 			{
 				displayName: 'Get only real accounts?',
@@ -204,7 +204,7 @@ export const accountDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"Filters accounts by the province or state of the account owner's address (the province or state where the account owner resides)",
+					'Filters accounts by the province or state of the account owner\'s address (the province or state where the account owner resides)',
 			},
 		],
 	},
@@ -307,7 +307,7 @@ export const accountDescription = [
 				],
 				default: 'N',
 				description:
-					"The flag indicates whether the account's calls are enabled. Shows whether SIP auth is enabled for the alias. Possible values: N - SIP auth is enabled for the alias and calls are allowed; Y - SIP auth is disabled for the alias and calls are disabled.",
+					'The flag indicates whether the account\'s calls are enabled. Shows whether SIP auth is enabled for the alias. Possible values: N - SIP auth is enabled for the alias and calls are allowed; Y - SIP auth is disabled for the alias and calls are disabled.',
 			},
 			{
 				displayName: 'Account role ID',

@@ -147,7 +147,7 @@ export const customerExtensionDescription = [
 				],
 				default: 'N',
 				description:
-					"When creating an extension you can mark it as 'published' so that it is included in the dial-by-name directory. One of the following: Y - Makes an extensions accessible via dial-by-name; N - Excludes a certain extension from being accessible via dial-by- name (e.g. you do not want telemarketers to directly reach your CEO or CFO because their names are publicly accessible)",
+					'When creating an extension you can mark it as \'published\' so that it is included in the dial-by-name directory. One of the following: Y - Makes an extensions accessible via dial-by-name; N - Excludes a certain extension from being accessible via dial-by- name (e.g. you do not want telemarketers to directly reach your CEO or CFO because their names are publicly accessible)',
 			},
 		],
 	},
@@ -172,7 +172,7 @@ export const customerExtensionDescription = [
 				displayName: 'Account ID',
 				name: 'account_id',
 				type: 'string',
-				default: "",
+				default: '',
 				description: 'Search pattern for account IDs',
 			},
 			{
@@ -189,7 +189,7 @@ export const customerExtensionDescription = [
 				type: 'boolean',
 				default: false,
 				description:
-					"If set to '1', then additionally a list of main office extensions will be provided for its branch office",
+					'If set to \'1\', then additionally a list of main office extensions will be provided for its branch office',
 			},
 			{
 				displayName: 'Limit',
@@ -296,7 +296,7 @@ export const customerExtensionDescription = [
 				],
 				default: 'N',
 				description:
-					"When creating an extension you can mark it as 'published' so that it is included in the dial-by-name directory. One of the following: Y - Makes an extensions accessible via dial-by-name; N - Excludes a certain extension from being accessible via dial-by- name (e.g. you do not want telemarketers to directly reach your CEO or CFO because their names are publicly accessible)",
+					'When creating an extension you can mark it as \'published\' so that it is included in the dial-by-name directory. One of the following: Y - Makes an extensions accessible via dial-by-name; N - Excludes a certain extension from being accessible via dial-by- name (e.g. you do not want telemarketers to directly reach your CEO or CFO because their names are publicly accessible)',
 			},
 		],
 	},
