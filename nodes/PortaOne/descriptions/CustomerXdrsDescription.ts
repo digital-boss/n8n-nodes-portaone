@@ -103,7 +103,7 @@ export const customerXdrsDescription = [
 				type: 'boolean',
 				default: false,
 				description:
-					"Set this flag to filter xDRs by their call recording status. When it's not provided, all xDRs are obtained.",
+					'Set this flag to filter xDRs by their call recording status. When it\'s not provided, all xDRs are obtained.',
 			},
 			{
 				displayName: 'CRD entity',

@@ -34,6 +34,16 @@ export const accountDescription = [
 				value: 'addAlias',
 				description: 'Add an alias to an account',
 			},
+			{
+				name: 'Get Custom Fields Values',
+				value: 'getCustomFieldsValues',
+				description: 'Get the list of account\'s custom fields',
+			},
+			{
+				name: 'Update Custom Fields Values',
+				value: 'updateCustomFieldsValues',
+				description: 'Modify the account\'s custom fields',
+			},
 		],
 		default: 'get',
 		description: 'The operation to perform.',
@@ -110,7 +120,7 @@ export const accountDescription = [
 				name: 'companyname',
 				type: 'string',
 				default: '',
-				description: "Customer's company name",
+				description: 'Customer\'s company name',
 			},
 			{
 				displayName: 'DID number',
@@ -118,7 +128,7 @@ export const accountDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The search pattern for the account's DID number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+					'The search pattern for the account\'s DID number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character',
 			},
 			{
 				displayName: 'Extension ID',
@@ -126,7 +136,7 @@ export const accountDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The search pattern for the account's extension number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+					'The search pattern for the account\'s extension number. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character',
 			},
 			{
 				displayName: 'Extension name',
@@ -134,7 +144,7 @@ export const accountDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The search pattern for the account's extension name. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character",
+					'The search pattern for the account\'s extension name. Use the following wildcard symbols: the percent ( % ) wildcard allows you to match any string of characters; the underscore ( _ ) wildcard allows you to match any single character',
 			},
 			{
 				displayName: 'Get not closed accounts?',
@@ -142,7 +152,7 @@ export const accountDescription = [
 				type: 'boolean',
 				default: false,
 				description:
-					"Indicates whether to fetch only accounts with statuses different from 'closed'",
+					'Indicates whether to fetch only accounts with statuses different from \'closed\'',
 			},
 			{
 				displayName: 'Get only real accounts?',
@@ -194,7 +204,7 @@ export const accountDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"Filters accounts by the province or state of the account owner's address (the province or state where the account owner resides)",
+					'Filters accounts by the province or state of the account owner\'s address (the province or state where the account owner resides)',
 			},
 		],
 	},
@@ -297,7 +307,7 @@ export const accountDescription = [
 				],
 				default: 'N',
 				description:
-					"The flag indicates whether the account's calls are enabled. Shows whether SIP auth is enabled for the alias. Possible values: N - SIP auth is enabled for the alias and calls are allowed; Y - SIP auth is disabled for the alias and calls are disabled.",
+					'The flag indicates whether the account\'s calls are enabled. Shows whether SIP auth is enabled for the alias. Possible values: N - SIP auth is enabled for the alias and calls are allowed; Y - SIP auth is disabled for the alias and calls are disabled.',
 			},
 			{
 				displayName: 'Account role ID',
@@ -317,4 +327,103 @@ export const accountDescription = [
 			},
 		],
 	},
+
+	// ----------------------------------
+	//         Accounts - Get Custom Fields Values
+	// ----------------------------------
+	{
+		displayName: 'Account ID',
+		name: 'i_account',
+		required: true,
+		type: 'number',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: ['account'],
+				operation: ['getCustomFieldsValues'],
+			},
+		},
+		description: 'The unique ID of the account record',
+	},
+
+	// ----------------------------------
+	//         Accounts - Update Custom Fields Values
+	// ----------------------------------
+	{
+		displayName: 'Custom Fields Values',
+		name: 'custom_fields_values',
+		required: true,
+		type: 'fixedCollection',
+		typeOptions: {
+			multipleValues: true,
+		},
+		displayOptions: {
+			show: {
+				resource: ['account'],
+				operation: ['updateCustomFieldsValues'],
+			},
+		},
+		default: '',
+		description: 'The list of Custom Fields values for the given account',
+		options: [
+			{
+				displayName: 'Field',
+				name: 'fields',
+				values: [
+					{
+						displayName: 'DB Value',
+						name: 'db_value',
+						type: 'string',
+						default: '',
+						description: 'Database value of the custom field',
+					},
+					{
+						displayName: 'Custom Field ID',
+						name: 'i_custom_field',
+						type: 'string',
+						default: '',
+						description: 'The unique ID of the custom field. Either the \'i_custom_field\' or the \'name\' is required for the \'update_custom_fields_values\' method.',
+					},
+					{
+						displayName: 'Custom Field Value ID',
+						name: 'i_custom_field_value',
+						type: 'string',
+						default: '',
+						description: 'The unique ID of the custom field value. The field is ignored in the \'update_custom_fields_values\' method request.',
+					},
+					{
+						displayName: 'Name',
+						name: 'name',
+						type: 'string',
+						default: '',
+						description: ' The unique ID of the custom field value. The field is ignored in the \'update_custom_fields_values\' method request.',
+					},
+				],
+			},
+		],
+	},
+
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		displayOptions: {
+			show: {
+				resource: ['account'],
+				operation: ['updateCustomFieldsValues'],
+			},
+		},
+		default: {},
+		placeholder: 'Add Field',
+		options: [
+			{
+				displayName: 'Account ID',
+				name: 'i_account',
+				type: 'number',
+				default: '',
+				description: 'The unique ID of the account record',
+			},
+		],
+	},
+
 ] as INodeProperties[];

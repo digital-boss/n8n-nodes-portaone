@@ -34,6 +34,16 @@ export const customerDescription = [
 				value: 'getAll',
 				description: 'Get data of all customers',
 			},
+			{
+				name: 'Get Custom Fields Values',
+				value: 'getCustomFieldsValues',
+				description: 'Get the list of customer\'s custom fields',
+			},
+			{
+				name: 'Update Custom Fields Values',
+				value: 'updateCustomFieldsValues',
+				description: 'Modify a customer\'s custom fields',
+			},
 		],
 		default: 'get',
 		description: 'The operation to perform.',
@@ -140,7 +150,7 @@ export const customerDescription = [
 				name: 'companyname',
 				type: 'string',
 				default: '',
-				description: "Customer's company name",
+				description: 'Customer\'s company name',
 			},
 			{
 				displayName: 'Credit limit exceeded?',
@@ -155,7 +165,7 @@ export const customerDescription = [
 				name: 'firstname',
 				type: 'string',
 				default: '',
-				description: "Customer's first name",
+				description: 'Customer\'s first name',
 			},
 			{
 				displayName: 'Get statuses?',
@@ -185,7 +195,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the 'main' customer (Main Office (HQ) customer) record within one linked customers' group",
+					'The unique ID of the \'main\' customer (Main Office (HQ) customer) record within one linked customers\' group',
 			},
 			{
 				displayName: 'Office type ID',
@@ -207,7 +217,7 @@ export const customerDescription = [
 				name: 'lastname',
 				type: 'string',
 				default: '',
-				description: "Customer's last name",
+				description: 'Customer\'s last name',
 			},
 			{
 				displayName: 'Limit',
@@ -245,7 +255,7 @@ export const customerDescription = [
 						type: 'string',
 						default: '',
 						description:
-							"Single or comma seperated list of fields to search by. Eg: 'name' or 'firstname,lastname,companyname'",
+							'Single or comma seperated list of fields to search by. Eg: \'name\' or \'firstname,lastname,companyname\'',
 					},
 					{
 						displayName: 'Value',
@@ -317,7 +327,7 @@ export const customerDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The API token of the customer. Used as an alternative to the standard login-password pairs for authenticating applications integrated with the system via API. Possible values: string of 36 characters using a combination of '0-9','a to f', and '-' characters.",
+					'The API token of the customer. Used as an alternative to the standard login-password pairs for authenticating applications integrated with the system via API. Possible values: string of 36 characters using a combination of \'0-9\',\'a to f\', and \'-\' characters.',
 			},
 			{
 				displayName: 'Auxilliary Fields',
@@ -357,7 +367,7 @@ export const customerDescription = [
 				name: 'baddr1',
 				type: 'string',
 				default: '',
-				description: "The 1st line of the customer's address. Possible length: 41 characters.",
+				description: 'The 1st line of the customer\'s address. Possible length: 41 characters.',
 			},
 			{
 				displayName: 'Balance',
@@ -365,7 +375,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The customer balance. Used to specify the customer's current balance. Note: only applicable for postpaid customers.",
+					'The customer balance. Used to specify the customer\'s current balance. Note: only applicable for postpaid customers.',
 			},
 			{
 				displayName: 'Balance Transfer Allowed?',
@@ -432,7 +442,7 @@ export const customerDescription = [
 				],
 				default: 'Y',
 				description:
-					"Indicates whether a customer's calls should be blocked. Used to block the customer by the administrator; no call services are provided until the administrator removes the block. Blocked customers have no access to self-care pages. Blocked customers are not subject to maintenance charges but subscription fees still apply. Possible values: Y - block account's calls; N - do not block account's calls.",
+					'Indicates whether a customer\'s calls should be blocked. Used to block the customer by the administrator; no call services are provided until the administrator removes the block. Blocked customers have no access to self-care pages. Blocked customers are not subject to maintenance charges but subscription fees still apply. Possible values: Y - block account\'s calls; N - do not block account\'s calls.',
 			},
 			{
 				displayName: 'BP Charge CC?',
@@ -444,7 +454,7 @@ export const customerDescription = [
 				],
 				default: 'Y',
 				description:
-					"The flag indicates whether to automatically charge the customer's credit card to pay an invoice. Note: if the value is empty, the value from the customer class should be used. This is an ineffective alternative for customers without a payment method configured. Possible values: Y - charge credit card when invoice is generated; N - don't charge credit card when invoice is generated; empty - use customer class value for this option (inherit value from customer class).",
+					'The flag indicates whether to automatically charge the customer\'s credit card to pay an invoice. Note: if the value is empty, the value from the customer class should be used. This is an ineffective alternative for customers without a payment method configured. Possible values: Y - charge credit card when invoice is generated; N - don\'t charge credit card when invoice is generated; empty - use customer class value for this option (inherit value from customer class).',
 			},
 			{
 				displayName: 'BP closure delayed info',
@@ -459,7 +469,7 @@ export const customerDescription = [
 						type: 'dateTime',
 						default: '',
 						description:
-							"The timestamp for when the customer's billing period will be automatically closed.",
+							'The timestamp for when the customer\'s billing period will be automatically closed.',
 					},
 					{
 						displayName: 'Is closing scheduled?',
@@ -471,7 +481,7 @@ export const customerDescription = [
 						],
 						default: 'Y',
 						description:
-							"Indicates whether the customer's billing period is scheduled to be closed.",
+							'Indicates whether the customer\'s billing period is scheduled to be closed.',
 					},
 				],
 			},
@@ -485,7 +495,7 @@ export const customerDescription = [
 				],
 				default: 'Y',
 				description:
-					"Indicates whether callshop features on customer's self-care interface are enabled. Possible values: Y - callshop features are enabled; N - callshop features are disabled.",
+					'Indicates whether callshop features on customer\'s self-care interface are enabled. Possible values: Y - callshop features are enabled; N - callshop features are disabled.',
 			},
 			{
 				displayName: 'City',
@@ -493,7 +503,7 @@ export const customerDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The city of the customer's address (the city where the customer lives). Possible length: 31 characters.",
+					'The city of the customer\'s address (the city where the customer lives). Possible length: 31 characters.',
 			},
 			{
 				displayName: 'Commission plan effective from',
@@ -501,14 +511,14 @@ export const customerDescription = [
 				type: 'dateTime',
 				default: '',
 				description:
-					"The date and time when the commission plan was assigned. Commission plan is used to automatically calculate representatives' commissions. It can contain different calculation schemas.",
+					'The date and time when the commission plan was assigned. Commission plan is used to automatically calculate representatives\' commissions. It can contain different calculation schemas.',
 			},
 			{
 				displayName: 'Company Name',
 				name: 'companyname',
 				type: 'string',
 				default: '',
-				description: "The customer's company name. Possible length: 100 characters.",
+				description: 'The customer\'s company name. Possible length: 100 characters.',
 			},
 			{
 				displayName: 'Contact 1',
@@ -546,7 +556,7 @@ export const customerDescription = [
 				name: 'credit_exceed',
 				type: 'boolean',
 				default: false,
-				description: "Indicates whether the customer's credit limit has been exceeded.",
+				description: 'Indicates whether the customer\'s credit limit has been exceeded.',
 			},
 			{
 				displayName: 'Credit Limit',
@@ -554,7 +564,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The customer's credit limit value. Used to prevent the customer from going into overdraft.",
+					'The customer\'s credit limit value. Used to prevent the customer from going into overdraft.',
 			},
 			{
 				displayName: 'Credit limit until',
@@ -615,7 +625,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The value of the customer's subscription discount. Used to reduce the subscription periodic fees. The rate you enter here is the default one and applies to all of this customer's subscriptions: the ones assigned to the customer directly plus subscriptions assigned to their accounts",
+					'The value of the customer\'s subscription discount. Used to reduce the subscription periodic fees. The rate you enter here is the default one and applies to all of this customer\'s subscriptions: the ones assigned to the customer directly plus subscriptions assigned to their accounts',
 			},
 			{
 				displayName: 'Balance control type ID',
@@ -623,7 +633,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The customer balance control type. This is the customer's balance model. It is either prepaid - a customer pays for services in advance - or postpaid - a customer pays at the end of the billing period. Possible values: 1 - postpaid (default); 2 - prepaid.",
+					'The customer balance control type. This is the customer\'s balance model. It is either prepaid - a customer pays for services in advance - or postpaid - a customer pays at the end of the billing period. Possible values: 1 - postpaid (default); 2 - prepaid.',
 			},
 			{
 				displayName: 'Billing period ID',
@@ -631,7 +641,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's billing period. Used to define the frequency of invoicing for this customer. Possible values: 1 - daily; 2 - weekly; 3 - semimonthly; 4 - monthly; 5 - monthly (anniversary); 6 to 30 days.",
+					'The unique ID of the customer\'s billing period. Used to define the frequency of invoicing for this customer. Possible values: 1 - daily; 2 - weekly; 3 - semimonthly; 4 - monthly; 5 - monthly (anniversary); 6 to 30 days.',
 			},
 			{
 				displayName: 'Billing processor ID',
@@ -647,7 +657,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The ID of the overridden commission plan for this customer. Commission plan is used to automatically calculate representatives' commissions. It can contain different calculation schemas. Note: the 'Override commission plan' switch should be switched on.",
+					'The ID of the overridden commission plan for this customer. Commission plan is used to automatically calculate representatives\' commissions. It can contain different calculation schemas. Note: the \'Override commission plan\' switch should be switched on.',
 			},
 			{
 				displayName: 'Customer class ID',
@@ -694,7 +704,7 @@ export const customerDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The code for the customer's web language. Used to specify the preferred language for the customer self-care interface.",
+					'The code for the customer\'s web language. Used to specify the preferred language for the customer self-care interface.',
 			},
 			{
 				displayName: 'Main office ID',
@@ -702,7 +712,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the main office (customer record with office type 3). Main Office (HQ) - defines the 'main' customer in the group for which the basic service configuration is done. All extensions and hunt groups added for this customer become available for all of its linked customers.",
+					'The unique ID of the main office (customer record with office type 3). Main Office (HQ) - defines the \'main\' customer in the group for which the basic service configuration is done. All extensions and hunt groups added for this customer become available for all of its linked customers.',
 			},
 			{
 				displayName: 'Number scope ID',
@@ -726,7 +736,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the office type. Main Office (HQ) - defines the 'main' customer in the group for which the basic service configuration is done. All extensions and hunt groups added for this customer become available for all of its linked customers. Branch Office (site) - defines the 'subordinate' customer created under the Main Office (HQ) customer. This customer inherits all of the main customer's extensions and hunt groups. Possible values: 1 - none; 2 - branch_office; 3 - main_office.",
+					'The unique ID of the office type. Main Office (HQ) - defines the \'main\' customer in the group for which the basic service configuration is done. All extensions and hunt groups added for this customer become available for all of its linked customers. Branch Office (site) - defines the \'subordinate\' customer created under the Main Office (HQ) customer. This customer inherits all of the main customer\'s extensions and hunt groups. Possible values: 1 - none; 2 - branch_office; 3 - main_office.',
 			},
 			{
 				displayName: 'Parent ID',
@@ -734,7 +744,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The ID of the customer's owner. Note: null means it's a direct customer/reseller/distributor.",
+					'The ID of the customer\'s owner. Note: null means it\'s a direct customer/reseller/distributor.',
 			},
 			{
 				displayName: 'Represenative ID',
@@ -742,7 +752,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's representative. Used to specify a representative for this customer. Representatives work on behalf of the company, selling services for a commission. After you identify the representative for this customer, they start to receive a commission according to the commission plan you defined for them. Note: representatives don't participate in billing or revenue sharing; they are listed for information purposes only.",
+					'The unique ID of the customer\'s representative. Used to specify a representative for this customer. Representatives work on behalf of the company, selling services for a commission. After you identify the representative for this customer, they start to receive a commission according to the commission plan you defined for them. Note: representatives don\'t participate in billing or revenue sharing; they are listed for information purposes only.',
 			},
 			{
 				displayName: 'Role ID',
@@ -750,7 +760,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's access role. Used to allow you to control user access to all resources in the system.",
+					'The unique ID of the customer\'s access role. Used to allow you to control user access to all resources in the system.',
 			},
 			{
 				displayName: 'Tariff ID',
@@ -758,14 +768,14 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's tariff. Used to specify a tariff to charge the reseller for calls made by their subcustomers. A tariff is a complete set of rates for a specific account, customer, or vendor. Note: applies to resellers only.",
+					'The unique ID of the customer\'s tariff. Used to specify a tariff to charge the reseller for calls made by their subcustomers. A tariff is a complete set of rates for a specific account, customer, or vendor. Note: applies to resellers only.',
 			},
 			{
 				displayName: 'Incoming Tariff ID',
 				name: 'i_tariff_incoming',
 				type: 'number',
 				default: 0,
-				description: "The ID of the customer's incoming tariff. Note: applies to resellers only.",
+				description: 'The ID of the customer\'s incoming tariff. Note: applies to resellers only.',
 			},
 			{
 				displayName: 'Template ID',
@@ -773,7 +783,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's regular invoice template. An invoice template is a special HTML document that defines how your customers' .pdf invoices look. Possible values: null - the template defined in the customer class is used; 0 - invoices are not created; [otherwise] - the unique ID of the regular invoice template.",
+					'The unique ID of the customer\'s regular invoice template. An invoice template is a special HTML document that defines how your customers\' .pdf invoices look. Possible values: null - the template defined in the customer class is used; 0 - invoices are not created; [otherwise] - the unique ID of the regular invoice template.',
 			},
 			{
 				displayName: 'Timezone ID',
@@ -781,7 +791,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's time zone. Used to set the time zone for which to display the date and time values on the customer self-care interface.",
+					'The unique ID of the customer\'s time zone. Used to set the time zone for which to display the date and time values on the customer self-care interface.',
 			},
 			{
 				displayName: 'Traffic profile ID',
@@ -797,14 +807,14 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The ID of the customer's user interface time zone.  Note: to get the list of available time zones, use API method generic.get_time_zone_list; null value means the billing time will be used.",
+					'The ID of the customer\'s user interface time zone.  Note: to get the list of available time zones, use API method generic.get_time_zone_list; null value means the billing time will be used.',
 			},
 			{
 				displayName: 'Discount plan ID',
 				name: 'i_vd_plan',
 				type: 'number',
 				default: 0,
-				description: "The ID of the customer's discount plan.",
+				description: 'The ID of the customer\'s discount plan.',
 			},
 			{
 				displayName: 'Note / Description',
@@ -812,7 +822,7 @@ export const customerDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"Used to make notes about the customer. When making changes in the customer record, the administrator can use the Notepad tab to provide a comment detailing the reason for these changes (for example, 'product changed, credited $50').",
+					'Used to make notes about the customer. When making changes in the customer record, the administrator can use the Notepad tab to provide a comment detailing the reason for these changes (for example, \'product changed, credited $50\').',
 			},
 			{
 				displayName: 'Send statistics?',
@@ -885,7 +895,7 @@ export const customerDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The API token of the customer. Used as an alternative to the standard login-password pairs for authenticating applications integrated with the system via API. Possible values: string of 36 characters using a combination of '0-9','a to f', and '-' characters.",
+					'The API token of the customer. Used as an alternative to the standard login-password pairs for authenticating applications integrated with the system via API. Possible values: string of 36 characters using a combination of \'0-9\',\'a to f\', and \'-\' characters.',
 			},
 			{
 				displayName: 'Auxilliary Fields',
@@ -925,7 +935,7 @@ export const customerDescription = [
 				name: 'baddr1',
 				type: 'string',
 				default: '',
-				description: "The 1st line of the customer's address. Possible length: 41 characters.",
+				description: 'The 1st line of the customer\'s address. Possible length: 41 characters.',
 			},
 			{
 				displayName: 'Balance',
@@ -933,7 +943,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The customer balance. Used to specify the customer's current balance. Note: only applicable for postpaid customers.",
+					'The customer balance. Used to specify the customer\'s current balance. Note: only applicable for postpaid customers.',
 			},
 			{
 				displayName: 'Balance Transfer Allowed?',
@@ -1000,7 +1010,7 @@ export const customerDescription = [
 				],
 				default: 'Y',
 				description:
-					"Indicates whether a customer's calls should be blocked. Used to block the customer by the administrator; no call services are provided until the administrator removes the block. Blocked customers have no access to self-care pages. Blocked customers are not subject to maintenance charges but subscription fees still apply. Possible values: Y - block account's calls; N - do not block account's calls.",
+					'Indicates whether a customer\'s calls should be blocked. Used to block the customer by the administrator; no call services are provided until the administrator removes the block. Blocked customers have no access to self-care pages. Blocked customers are not subject to maintenance charges but subscription fees still apply. Possible values: Y - block account\'s calls; N - do not block account\'s calls.',
 			},
 			{
 				displayName: 'BP Charge CC?',
@@ -1012,7 +1022,7 @@ export const customerDescription = [
 				],
 				default: 'Y',
 				description:
-					"The flag indicates whether to automatically charge the customer's credit card to pay an invoice. Note: if the value is empty, the value from the customer class should be used. This is an ineffective alternative for customers without a payment method configured. Possible values: Y - charge credit card when invoice is generated; N - don't charge credit card when invoice is generated; empty - use customer class value for this option (inherit value from customer class).",
+					'The flag indicates whether to automatically charge the customer\'s credit card to pay an invoice. Note: if the value is empty, the value from the customer class should be used. This is an ineffective alternative for customers without a payment method configured. Possible values: Y - charge credit card when invoice is generated; N - don\'t charge credit card when invoice is generated; empty - use customer class value for this option (inherit value from customer class).',
 			},
 			{
 				displayName: 'BP closure delayed info',
@@ -1027,7 +1037,7 @@ export const customerDescription = [
 						type: 'dateTime',
 						default: '',
 						description:
-							"The timestamp for when the customer's billing period will be automatically closed.",
+							'The timestamp for when the customer\'s billing period will be automatically closed.',
 					},
 					{
 						displayName: 'Is closing scheduled?',
@@ -1039,7 +1049,7 @@ export const customerDescription = [
 						],
 						default: 'Y',
 						description:
-							"Indicates whether the customer's billing period is scheduled to be closed.",
+							'Indicates whether the customer\'s billing period is scheduled to be closed.',
 					},
 				],
 			},
@@ -1053,7 +1063,7 @@ export const customerDescription = [
 				],
 				default: 'Y',
 				description:
-					"Indicates whether callshop features on customer's self-care interface are enabled. Possible values: Y - callshop features are enabled; N - callshop features are disabled.",
+					'Indicates whether callshop features on customer\'s self-care interface are enabled. Possible values: Y - callshop features are enabled; N - callshop features are disabled.',
 			},
 			{
 				displayName: 'City',
@@ -1061,7 +1071,7 @@ export const customerDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The city of the customer's address (the city where the customer lives). Possible length: 31 characters.",
+					'The city of the customer\'s address (the city where the customer lives). Possible length: 31 characters.',
 			},
 			{
 				displayName: 'Commission plan effective from',
@@ -1069,14 +1079,14 @@ export const customerDescription = [
 				type: 'dateTime',
 				default: '',
 				description:
-					"The date and time when the commission plan was assigned. Commission plan is used to automatically calculate representatives' commissions. It can contain different calculation schemas.",
+					'The date and time when the commission plan was assigned. Commission plan is used to automatically calculate representatives\' commissions. It can contain different calculation schemas.',
 			},
 			{
 				displayName: 'Company Name',
 				name: 'companyname',
 				type: 'string',
 				default: '',
-				description: "The customer's company name. Possible length: 100 characters.",
+				description: 'The customer\'s company name. Possible length: 100 characters.',
 			},
 			{
 				displayName: 'Contact 1',
@@ -1113,7 +1123,7 @@ export const customerDescription = [
 				displayName: 'Credit Exceeded?',
 				name: 'credit_exceed',
 				type: 'boolean',
-				description: "Indicates whether the customer's credit limit has been exceeded.",
+				description: 'Indicates whether the customer\'s credit limit has been exceeded.',
 			},
 			{
 				displayName: 'Credit Limit',
@@ -1121,7 +1131,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The customer's credit limit value. Used to prevent the customer from going into overdraft.",
+					'The customer\'s credit limit value. Used to prevent the customer from going into overdraft.',
 			},
 			{
 				displayName: 'Credit limit until',
@@ -1190,7 +1200,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The value of the customer's subscription discount. Used to reduce the subscription periodic fees. The rate you enter here is the default one and applies to all of this customer's subscriptions: the ones assigned to the customer directly plus subscriptions assigned to their accounts",
+					'The value of the customer\'s subscription discount. Used to reduce the subscription periodic fees. The rate you enter here is the default one and applies to all of this customer\'s subscriptions: the ones assigned to the customer directly plus subscriptions assigned to their accounts',
 			},
 			{
 				displayName: 'Balance control type ID',
@@ -1198,7 +1208,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The customer balance control type. This is the customer's balance model. It is either prepaid - a customer pays for services in advance - or postpaid - a customer pays at the end of the billing period. Possible values: 1 - postpaid (default); 2 - prepaid.",
+					'The customer balance control type. This is the customer\'s balance model. It is either prepaid - a customer pays for services in advance - or postpaid - a customer pays at the end of the billing period. Possible values: 1 - postpaid (default); 2 - prepaid.',
 			},
 			{
 				displayName: 'Billing period ID',
@@ -1206,7 +1216,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's billing period. Used to define the frequency of invoicing for this customer. Possible values: 1 - daily; 2 - weekly; 3 - semimonthly; 4 - monthly; 5 - monthly (anniversary); 6 to 30 days.",
+					'The unique ID of the customer\'s billing period. Used to define the frequency of invoicing for this customer. Possible values: 1 - daily; 2 - weekly; 3 - semimonthly; 4 - monthly; 5 - monthly (anniversary); 6 to 30 days.',
 			},
 			{
 				displayName: 'Billing processor ID',
@@ -1222,7 +1232,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The ID of the overridden commission plan for this customer. Commission plan is used to automatically calculate representatives' commissions. It can contain different calculation schemas. Note: the 'Override commission plan' switch should be switched on.",
+					'The ID of the overridden commission plan for this customer. Commission plan is used to automatically calculate representatives\' commissions. It can contain different calculation schemas. Note: the \'Override commission plan\' switch should be switched on.',
 			},
 			{
 				displayName: 'Customer class ID',
@@ -1269,7 +1279,7 @@ export const customerDescription = [
 				type: 'string',
 				default: '',
 				description:
-					"The code for the customer's web language. Used to specify the preferred language for the customer self-care interface.",
+					'The code for the customer\'s web language. Used to specify the preferred language for the customer self-care interface.',
 			},
 			{
 				displayName: 'Main office ID',
@@ -1277,7 +1287,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the main office (customer record with office type 3). Main Office (HQ) - defines the 'main' customer in the group for which the basic service configuration is done. All extensions and hunt groups added for this customer become available for all of its linked customers.",
+					'The unique ID of the main office (customer record with office type 3). Main Office (HQ) - defines the \'main\' customer in the group for which the basic service configuration is done. All extensions and hunt groups added for this customer become available for all of its linked customers.',
 			},
 			{
 				displayName: 'Number scope ID',
@@ -1301,7 +1311,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the office type. Main Office (HQ) - defines the 'main' customer in the group for which the basic service configuration is done. All extensions and hunt groups added for this customer become available for all of its linked customers. Branch Office (site) - defines the 'subordinate' customer created under the Main Office (HQ) customer. This customer inherits all of the main customer's extensions and hunt groups. Possible values: 1 - none; 2 - branch_office; 3 - main_office.",
+					'The unique ID of the office type. Main Office (HQ) - defines the \'main\' customer in the group for which the basic service configuration is done. All extensions and hunt groups added for this customer become available for all of its linked customers. Branch Office (site) - defines the \'subordinate\' customer created under the Main Office (HQ) customer. This customer inherits all of the main customer\'s extensions and hunt groups. Possible values: 1 - none; 2 - branch_office; 3 - main_office.',
 			},
 			{
 				displayName: 'Parent ID',
@@ -1309,7 +1319,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The ID of the customer's owner. Note: null means it's a direct customer/reseller/distributor.",
+					'The ID of the customer\'s owner. Note: null means it\'s a direct customer/reseller/distributor.',
 			},
 			{
 				displayName: 'Represenative ID',
@@ -1317,7 +1327,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's representative. Used to specify a representative for this customer. Representatives work on behalf of the company, selling services for a commission. After you identify the representative for this customer, they start to receive a commission according to the commission plan you defined for them. Note: representatives don't participate in billing or revenue sharing; they are listed for information purposes only.",
+					'The unique ID of the customer\'s representative. Used to specify a representative for this customer. Representatives work on behalf of the company, selling services for a commission. After you identify the representative for this customer, they start to receive a commission according to the commission plan you defined for them. Note: representatives don\'t participate in billing or revenue sharing; they are listed for information purposes only.',
 			},
 			{
 				displayName: 'Role ID',
@@ -1325,7 +1335,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-					"The unique ID of the customer's access role. Used to allow you to control user access to all resources in the system.",
+					'The unique ID of the customer\'s access role. Used to allow you to control user access to all resources in the system.',
 			},
 			{
 				displayName: 'Tariff ID',
@@ -1333,14 +1343,14 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-				"The unique ID of the customer's tariff. Used to specify a tariff to charge the reseller for calls made by their subcustomers. A tariff is a complete set of rates for a specific account, customer, or vendor. Note: applies to resellers only.",
+				'The unique ID of the customer\'s tariff. Used to specify a tariff to charge the reseller for calls made by their subcustomers. A tariff is a complete set of rates for a specific account, customer, or vendor. Note: applies to resellers only.',
 			},
 			{
 				displayName: 'Incoming Tariff ID',
 				name: 'i_tariff_incoming',
 				type: 'number',
 				default: 0,
-				description: "The ID of the customer's incoming tariff. Note: applies to resellers only.",
+				description: 'The ID of the customer\'s incoming tariff. Note: applies to resellers only.',
 			},
 			{
 				displayName: 'Template ID',
@@ -1348,7 +1358,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-				"The unique ID of the customer's regular invoice template. An invoice template is a special HTML document that defines how your customers' .pdf invoices look. Possible values: null - the template defined in the customer class is used; 0 - invoices are not created; [otherwise] - the unique ID of the regular invoice template.",
+				'The unique ID of the customer\'s regular invoice template. An invoice template is a special HTML document that defines how your customers\' .pdf invoices look. Possible values: null - the template defined in the customer class is used; 0 - invoices are not created; [otherwise] - the unique ID of the regular invoice template.',
 			},
 			{
 				displayName: 'Timezone ID',
@@ -1356,7 +1366,7 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-				"The unique ID of the customer's time zone. Used to set the time zone for which to display the date and time values on the customer self-care interface.",
+				'The unique ID of the customer\'s time zone. Used to set the time zone for which to display the date and time values on the customer self-care interface.',
 			},
 			{
 				displayName: 'Traffic profile ID',
@@ -1372,14 +1382,14 @@ export const customerDescription = [
 				type: 'number',
 				default: 0,
 				description:
-				"The ID of the customer's user interface time zone.  Note: to get the list of available time zones, use API method generic.get_time_zone_list; null value means the billing time will be used.",
+				'The ID of the customer\'s user interface time zone.  Note: to get the list of available time zones, use API method generic.get_time_zone_list; null value means the billing time will be used.',
 			},
 			{
 				displayName: 'Discount plan ID',
 				name: 'i_vd_plan',
 				type: 'number',
 				default: 0,
-				description: "The ID of the customer's discount plan.",
+				description: 'The ID of the customer\'s discount plan.',
 			},
 			{
 				displayName: 'Name',
@@ -1394,7 +1404,7 @@ export const customerDescription = [
 				type: 'string',
 				default: '',
 				description:
-				"Used to make notes about the customer. When making changes in the customer record, the administrator can use the Notepad tab to provide a comment detailing the reason for these changes (for example, 'product changed, credited $50').",
+				'Used to make notes about the customer. When making changes in the customer record, the administrator can use the Notepad tab to provide a comment detailing the reason for these changes (for example, \'product changed, credited $50\').',
 			},
 			{
 				displayName: 'Send statistics?',
@@ -1423,4 +1433,102 @@ export const customerDescription = [
 			},
 		],
 	},
+
+	// ----------------------------------
+	//         Customer - Get Custom Fields Values
+	// ----------------------------------
+	{
+		displayName: 'Customer ID',
+		name: 'i_customer',
+		required: true,
+		type: 'number',
+		default: '',
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['getCustomFieldsValues'],
+			},
+		},
+		description: 'The unique ID of the customer record. Not mandatory when the method that requires this structure is executed from the retail customer realm.',
+	},
+
+	// ----------------------------------
+	//         Customer - Update Custom Fields Values
+	// ----------------------------------
+	{
+		displayName: 'Custom Fields Values',
+		name: 'custom_fields_values',
+		required: true,
+		type: 'fixedCollection',
+		typeOptions: {
+			multipleValues: true,
+		},
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['updateCustomFieldsValues'],
+			},
+		},
+		default: '',
+		description: 'The list of Custom Fields values for the given customer',
+		options: [
+			{
+				displayName: 'Field',
+				name: 'fields',
+				values: [
+					{
+						displayName: 'DB Value',
+						name: 'db_value',
+						type: 'string',
+						default: '',
+						description: 'Database value of the custom field',
+					},
+					{
+						displayName: 'Custom Field ID',
+						name: 'i_custom_field',
+						type: 'string',
+						default: '',
+						description: 'The unique ID of the custom field. Either the \'i_custom_field\' or the \'name\' is required for the \'update_custom_fields_values\' method.',
+					},
+					{
+						displayName: 'Custom Field Value ID',
+						name: 'i_custom_field_value',
+						type: 'string',
+						default: '',
+						description: 'The unique ID of the custom field value. The field is ignored in the \'update_custom_fields_values\' method request.',
+					},
+					{
+						displayName: 'Name',
+						name: 'name',
+						type: 'string',
+						default: '',
+						description: ' The unique ID of the custom field value. The field is ignored in the \'update_custom_fields_values\' method request.',
+					},
+				],
+			},
+		],
+	},
+	{
+		displayName: 'Additional Fields',
+		name: 'additionalFields',
+		type: 'collection',
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['updateCustomFieldsValues'],
+			},
+		},
+		default: {},
+		placeholder: 'Add Field',
+		options: [
+			{
+				displayName: 'Customer ID',
+				name: 'i_customer',
+				type: 'number',
+				default: '',
+				description: 'The unique ID of the customer record. Not mandatory when the method that requires this structure is executed from the retail customer realm.',
+			},
+		],
+	},
+
 ] as INodeProperties[];

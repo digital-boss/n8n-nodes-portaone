@@ -123,7 +123,7 @@ export class PortaOne implements INodeType {
 				type: 'boolean',
 				displayOptions: {
 					show: {
-						operation: ['get', 'getAll', 'getAllActiveSessions'],
+						operation: ['get', 'getAll', 'getAllActiveSessions', 'getCustomFieldsValues', 'updateCustomFieldsValues'],
 					},
 				},
 				default: false,
@@ -187,6 +187,27 @@ export class PortaOne implements INodeType {
 					simplify = this.getNodeParameter('simplify', i) as boolean;
 					dataKey = 'customer_list';
 				}
+				// ----------------------------------
+				//         customer:getCustomFieldsValues
+				// ----------------------------------
+				else if (operation === 'getCustomFieldsValues') {
+					endpoint = '/rest/Customer/get_custom_fields_values';
+					body.i_customer = this.getNodeParameter('i_customer', i) as IDataObject;
+
+					simplify = this.getNodeParameter('simplify', i) as boolean;
+					dataKey = 'custom_fields_values';
+				}
+				// ----------------------------------
+				//         customer:updateCustomFieldsValues
+				// ----------------------------------
+				else if (operation === 'updateCustomFieldsValues') {
+					endpoint = '/rest/Customer/update_custom_fields_values';
+					body.custom_fields_values = this.getNodeParameter('custom_fields_values', i) as IDataObject;
+					Object.assign(body, this.getNodeParameter('additionalFields', i) as IDataObject);
+
+					simplify = this.getNodeParameter('simplify', i) as boolean;
+					dataKey = 'custom_fields_values';
+				}
 			} else if (resource === 'account') {
 				// ----------------------------------
 				//         account:delete
@@ -226,6 +247,27 @@ export class PortaOne implements INodeType {
 					body.alias_info = this.getNodeParameter('additionalFields', i) as IDataObject;
 					body.alias_info.i_master_account = this.getNodeParameter('i_master_account', i) as number;
 					body.alias_info.id = this.getNodeParameter('id', i) as number;
+				}
+				// ----------------------------------
+				//         account:getCustomFieldsValues
+				// ----------------------------------
+				else if (operation === 'getCustomFieldsValues') {
+					endpoint = '/rest/Account/get_custom_fields_values';
+					body.i_account = this.getNodeParameter('i_account', i) as IDataObject;
+
+					simplify = this.getNodeParameter('simplify', i) as boolean;
+					dataKey = 'custom_fields_values';
+				}
+				// ----------------------------------
+				//         account:updateCustomFieldsValues
+				// ----------------------------------
+				else if (operation === 'updateCustomFieldsValues') {
+					endpoint = '/rest/Account/update_custom_fields_values';
+					body.custom_fields_values = this.getNodeParameter('custom_fields_values', i) as IDataObject;
+					Object.assign(body, this.getNodeParameter('additionalFields', i) as IDataObject);
+
+					simplify = this.getNodeParameter('simplify', i) as boolean;
+					dataKey = 'custom_fields_values';
 				}
 			} else if (resource === 'invoice') {
 				// ----------------------------------
