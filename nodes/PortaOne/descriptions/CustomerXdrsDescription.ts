@@ -154,7 +154,7 @@ export const customerXdrsDescription = [
 			},
 			{
 				displayName: 'For current period?',
-				name: 'get_total',
+				name: 'for_current_period',
 				type: 'boolean',
 				default: false,
 				description: 'Specifies whether to show xDRs for the current billing period.',
