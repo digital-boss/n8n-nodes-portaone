@@ -16,7 +16,7 @@ import { portaOneApiRequest } from './GenericFunctions';
 
 export class PortaOne implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'PortaOne',
+		displayName: 'PortaOne OLD',
 		name: 'portaone',
 		icon: 'file:portaone.png',
 		group: ['input'],
@@ -137,6 +137,15 @@ export class PortaOne implements INodeType {
 		const returnData: IDataObject[] = [];
 		const resource = this.getNodeParameter('resource', 0) as string;
 		const operation = this.getNodeParameter('operation', 0) as string;
+
+		const authMethod = this.getNodeParameter('authentication', 0) as string;
+		let credentials: IDataObject;
+		if (authMethod === 'tokenAuth') {
+			credentials = await this.getCredentials('portaOneTokenApi') as IDataObject;
+		} else {
+			credentials = await this.getCredentials('portaOneBasicAuth') as IDataObject;
+		}
+		const testingMode = credentials.testingMode;
 
 		let endpoint = '';
 		let dataKey = '';
@@ -398,7 +407,7 @@ export class PortaOne implements INodeType {
 				throw error;
 			}
 
-			if (simplify && responseData[dataKey] !== undefined) {
+			if (!testingMode && simplify && responseData[dataKey] !== undefined) {
 				responseData = responseData[dataKey];
 			}
 

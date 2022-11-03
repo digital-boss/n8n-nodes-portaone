@@ -135,7 +135,7 @@ export async function portaOneApiRequest(
 		throw new NodeOperationError(this.getNode(), 'No credentials got returned!');
 	}
 
-	if (!staticData.session_id || resetSessionId) {
+	if (!credentials.testingMode && (!staticData.session_id || resetSessionId)) {
 		staticData.session_id = await login.call(this);
 	}
 
@@ -154,11 +154,16 @@ export async function portaOneApiRequest(
 	};
 
 	try {
-		const responseData = await this.helpers.request!(options);
-		try {
-			return JSON.parse(responseData);
-		} catch (err) {
-			return responseData;
+		if (credentials.testingMode) {
+			delete options.json;
+			return options;
+		} else {
+			const responseData = await this.helpers.request!(options);
+			try {
+				return JSON.parse(responseData);
+			} catch (err) {
+				return responseData;
+			}
 		}
 	} catch (error) {
 		// Assumes one time, that the request failed because of an exired session ID

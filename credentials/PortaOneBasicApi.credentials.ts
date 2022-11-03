@@ -26,5 +26,11 @@ export class PortaOneBasicApi implements ICredentialType {
 			},
 			default: '',
 		},
+		{
+			displayName: 'Testing Mode',
+			name: 'testingMode',
+			type: 'boolean',
+			default: false,
+		},
 	];
 }
