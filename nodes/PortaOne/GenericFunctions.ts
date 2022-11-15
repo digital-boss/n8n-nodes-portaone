@@ -155,8 +155,7 @@ export async function portaOneApiRequest(
 
 	try {
 		if (credentials.testingMode) {
-			delete options.json;
-			return options;
+			return formatHttpOpts(options);
 		} else {
 			const responseData = await this.helpers.request!(options);
 			try {
@@ -173,3 +172,15 @@ export async function portaOneApiRequest(
 		throw new NodeApiError(this.getNode(), error as JsonObject);
 	}
 }
+
+// tslint:disable-next-line:no-any
+const formatHttpOpts = (opts: OptionsWithUri): any => {
+	// workaround weird n8n bug: if returned object contains json: true, it returns only true value (no properties will returned).
+	// so just rename json to jsonX
+	const {json, ...logData} = opts;
+	if (json !== undefined) {
+		// tslint:disable-next-line:no-any
+		(logData as any).jsonX = json;
+	}
+	return logData;
+};
